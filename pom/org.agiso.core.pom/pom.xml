@@ -34,9 +34,44 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Logging libraries versions -->
+		<slf4j.version>1.6.1</slf4j.version>
+		<log4j.version>1.2.16</log4j.version>
+
+		<!-- Apache Commons libraries versions -->
+		<commons.lang.version>2.4.0</commons.lang.version>
+		<commons.beanutils.version>1.8.0</commons.beanutils.version>
+
+		<!-- Testing libraries versions -->
+		<testng.version>6.5.2</testng.version>
+		<mockito.verison>1.8.4</mockito.verison>
 	</properties>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>META-INF/spring/*</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources/META-INF/spring</directory>
+				<filtering>false</filtering>
+				<targetPath>META-INF/spring</targetPath>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+
+		<defaultGoal>install</defaultGoal>
+
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -44,8 +79,8 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.0</version>
 					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
+						<source>1.5</source>
+						<target>1.5</target>
 						<encoding>utf-8</encoding>
 						<showDeprecation>false</showDeprecation>
 						<showWarnings>true</showWarnings>
@@ -64,6 +99,17 @@
 					<artifactId>maven-release-plugin</artifactId>
 					<version>2.4.1</version>
 				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.9</version>
+					<configuration>
+						<printSummary>true</printSummary>
+						<junitArtifactName>org.junit:com.springsource.org.junit</junitArtifactName>
+						<testNGArtifactName>org.testng:com.springsource.org.testng</testNGArtifactName>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	
@@ -72,6 +118,97 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Logging dependency management -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>com.springsource.slf4j.org.apache.commons.logging</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>com.springsource.slf4j.api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>com.springsource.slf4j.simple</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>com.springsource.slf4j.log4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.log4j</groupId>
+				<artifactId>com.springsource.org.apache.log4j</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+
+			<!-- Apache Commons dependency management -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>com.springsource.org.apache.commons.lang</artifactId>
+				<version>${commons.lang.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>com.springsource.org.apache.commons.beanutils</artifactId>
+				<version>${commons.beanutils.version}</version>
+			</dependency>
+
+			<!-- Test dependency management -->
+			<dependency>
+				<groupId>org.testng</groupId>
+				<artifactId>com.springsource.org.testng</artifactId>
+				<version>${testng.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>com.springsource.org.mockito</artifactId>
+				<version>${mockito.verison}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>com.springsource.org.testng</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>com.springsource.org.mockito</artifactId>
+			<scope>test</scope>
+		</dependency>
+	
+		<!-- Test logging dependencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>com.springsource.slf4j.org.apache.commons.logging</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>com.springsource.slf4j.api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>com.springsource.slf4j.simple</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 </project>

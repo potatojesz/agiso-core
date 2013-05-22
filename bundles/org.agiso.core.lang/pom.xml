@@ -19,28 +19,6 @@
 	<inceptionYear>2013</inceptionYear>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-				<excludes>
-					<exclude>META-INF/spring/*</exclude>
-				</excludes>
-			</resource>
-			<resource>
-				<directory>src/main/resources/META-INF/spring</directory>
-				<filtering>false</filtering>
-				<targetPath>META-INF/spring</targetPath>
-			</resource>
-		</resources>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
-
-		<defaultGoal>install</defaultGoal>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -54,5 +32,21 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>com.springsource.org.apache.commons.lang</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>com.springsource.org.apache.commons.beanutils</artifactId>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.commons</groupId>
+					<artifactId>com.springsource.org.apache.commons.logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 </project>
