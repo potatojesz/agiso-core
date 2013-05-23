@@ -23,9 +23,10 @@ import static org.agiso.core.lang.util.TextUtils.*;
 import org.testng.annotations.Test;
 
 /**
- * 
+ * Testuje poprawność działania metod klasy narzędziowej {@link TextUtils}.
  * 
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @since 1.0
  */
 public class TextUtilsUTest {
 	@Test

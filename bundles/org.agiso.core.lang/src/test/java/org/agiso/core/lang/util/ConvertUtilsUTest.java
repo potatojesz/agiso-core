@@ -1,6 +1,6 @@
-/* org.agiso.core.lang.util.StringUtilsUTest (2013-05-22)
+/* org.agiso.core.lang.util.ConvertUtilsUTest (2013-05-23)
  * 
- * StringUtilsUTest.java
+ * ConvertUtilsUTest.java
  * 
  * Copyright 2013 agiso.org
  *
@@ -18,35 +18,16 @@
  */
 package org.agiso.core.lang.util;
 
-import static org.agiso.core.lang.util.StringUtils.*;
-
-import java.util.Date;
+import static org.agiso.core.lang.util.ConvertUtils.*;
 
 import org.testng.annotations.Test;
 
 /**
- * Testuje poprawność działania metod klasy narzędziowej {@link StringUtils}.
+ * Testuje poprawność działania metod klasy narzędziowej {@link ConvertUtils}.
  * 
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
  * @since 1.0
  */
-public class StringUtilsUTest {
-	@Test
-	public void testBlankIfNull() throws Exception {
-		Object o1 = null;
-		Object o2 = new Date();
+public class ConvertUtilsUTest {
 
-		assert "".equals(blankIfNull(o1));
-		assert o2.toString().equals(blankIfNull(o2));
-	}
-
-	@Test
-	public void testAddPending() throws Exception {
-		String text = "text";
-
-		assert  "text".equals(addPending(text, 'x', -1));
-		assert  "text".equals(addPending(text, 'x',  0));
-		assert  "text".equals(addPending(text, 'x',  4));
-		assert "xtext".equals(addPending(text, 'x',  5));
-	}
 }

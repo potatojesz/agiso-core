@@ -21,5 +21,6 @@
  * 
  * 
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @since 1.0
  */
 package org.agiso.core.lang.type;
