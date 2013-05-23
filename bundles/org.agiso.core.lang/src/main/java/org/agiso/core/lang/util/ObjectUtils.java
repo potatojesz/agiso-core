@@ -31,7 +31,6 @@ import org.agiso.core.lang.annotation.InHashCode;
 import org.agiso.core.lang.annotation.InToString;
 import org.agiso.core.lang.exception.BaseRuntimeException;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
