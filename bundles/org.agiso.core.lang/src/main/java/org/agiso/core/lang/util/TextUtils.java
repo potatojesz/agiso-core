@@ -23,15 +23,7 @@ package org.agiso.core.lang.util;
  * 
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
  */
-public class TextUtils {
-	/**
-	 * Prywatny konstruktor uniemożliwiający instancjonowanie klasy.
-	 */
-	private TextUtils() {
-		// Does nothing
-	}
-
-//	--------------------------------------------------------------------------
+public abstract class TextUtils {
 	public static String wrap(String text, int screenWidth,
 			int firstIndent, int indent, String lineBreak, boolean traceMode) {
 		return wrap(new StringBuffer(text), screenWidth, firstIndent, indent,

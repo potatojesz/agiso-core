@@ -28,15 +28,7 @@ import org.agiso.core.lang.exception.MethodInvocationException;
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
  * @since 1.0
  */
-public class ReflectUtils {
-	/**
-	 * Prywatny konstruktor uniemożliwiający instancjonowanie klasy.
-	 */
-	private ReflectUtils() {
-		// Does nothing
-	}
-
-//	--------------------------------------------------------------------------
+public abstract class ReflectUtils {
 	/**
 	 * Wywołuje określoną metodę obiektu przekazując do niej dostarczone parametry.
 	 * 

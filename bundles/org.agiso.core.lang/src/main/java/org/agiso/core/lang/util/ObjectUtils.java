@@ -45,7 +45,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
  * @since 1.0
  */
-public final class ObjectUtils {
+public abstract class ObjectUtils {
 	private static final String TOSTRING_COLON   = ": ";
 	private static final String TOSTRING_HYPHEN  = ", ";
 	private static final String TOSTRING_PREFIX  = "[";
@@ -55,14 +55,6 @@ public final class ObjectUtils {
 
 	private static final String TOSTRING_TCBUFF = "_toStringTCBuff";
 	private static final String TOSTRING_TCATTR = "_toStringTCAttr";
-
-//	--------------------------------------------------------------------------
-	/**
-	 * Prywatny konstruktor uniemożliwiający instancjonowanie klasy.
-	 */
-	private ObjectUtils() {
-		// Does nothing
-	}
 
 //	--------------------------------------------------------------------------
 //	Wsparcie implementacji metod hashCode, equals i toString

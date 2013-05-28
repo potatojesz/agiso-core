@@ -36,15 +36,7 @@ import java.util.Scanner;
  * @author <a href="mailto:kkopacz@araj.pl">Karol Kopacz</a>
  * @since 1.0
  */
-public final class ConvertUtils {
-	/**
-	 * Prywatny konstruktor uniemożliwiający instancjonowanie klasy.
-	 */
-	private ConvertUtils() {
-		// Does nothing
-	}
-
-//	--------------------------------------------------------------------------
+public abstract class ConvertUtils {
 	/**
 	 * @deprecated Use {@link #toMap(ResourceBundle)} instead
 	 */

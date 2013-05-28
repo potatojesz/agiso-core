@@ -34,7 +34,7 @@ import org.agiso.core.lang.type.Parameter;
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
  * @since 1.0
  */
-public final class ThreadUtils {
+public abstract class ThreadUtils {
 	private static final AtomicLong uniqueId;
 	private static final ThreadLocal<Long> uniqueNum;
 
@@ -80,14 +80,6 @@ public final class ThreadUtils {
 				return parentAttributes.isEmpty()? initialValue() : parentAttributes;
 			}
 		};
-	}
-
-//	--------------------------------------------------------------------------
-	/**
-	 * Prywatny konstruktor uniemożliwiający instancjonowanie klasy.
-	 */
-	private ThreadUtils() {
-		// Does nothing
 	}
 
 //	--------------------------------------------------------------------------

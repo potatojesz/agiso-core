@@ -34,7 +34,7 @@ import java.util.TimeZone;
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
  * @since 1.0
  */
-public final class DateUtils {
+public abstract class DateUtils {
 	/**
 	 * Interfejs fabryki dostarczającej kalendarz wykorzystywany do pobierania
 	 * daty i czasu.
@@ -76,14 +76,6 @@ public final class DateUtils {
 		dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		timeFormat = new SimpleDateFormat("HH:mm:ss");
 		dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	}
-
-//	--------------------------------------------------------------------------
-	/**
-	 * Prywatny konstruktor uniemożliwiający instancjonowanie klasy.
-	 */
-	private DateUtils() {
-		// Does nothing
 	}
 
 //	--------------------------------------------------------------------------

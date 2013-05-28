@@ -24,15 +24,7 @@ package org.agiso.core.lang.util;
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
  * @since 1.0
  */
-public final class StringUtils extends org.apache.commons.lang.StringUtils {
-	/**
-	 * Prywatny konstruktor uniemożliwiający instancjonowanie klasy.
-	 */
-	private StringUtils() {
-		// Does nothing
-	}
-
-//	--------------------------------------------------------------------------
+public abstract class StringUtils extends org.apache.commons.lang.StringUtils {
 	public static String blankIfNull(Object object) {
 		return (object == null)? "" : object.toString();
 	}
