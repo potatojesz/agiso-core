@@ -46,6 +46,7 @@
 		<!-- Testing libraries versions -->
 		<testng.version>6.5.2</testng.version>
 		<mockito.verison>1.8.4</mockito.verison>
+		<jcommander.version>1.12.0</jcommander.version>
 	</properties>
 
 	<build>
@@ -178,6 +179,11 @@
 				<artifactId>com.springsource.org.mockito</artifactId>
 				<version>${mockito.verison}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.beust</groupId>
+				<artifactId>com.springsource.jcommander</artifactId>
+				<version>${jcommander.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -208,6 +214,11 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>com.springsource.slf4j.simple</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.beust</groupId>
+			<artifactId>com.springsource.jcommander</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

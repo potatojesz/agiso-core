@@ -51,7 +51,10 @@ public final class StringUtils extends org.apache.commons.lang.StringUtils {
 		return b.toString();
 	}
 
-//	--------------------------------------------------------------------------
-//	TODO: Przenieść do klasy TextUtils
-//	--------------------------------------------------------------------------
+	public static String limit(String s, int length) {
+		if(s != null && s.length() > length) {
+			return s.substring(0, length);
+		}
+		return s;
+	}
 }

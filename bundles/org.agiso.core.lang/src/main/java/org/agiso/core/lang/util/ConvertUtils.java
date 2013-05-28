@@ -46,12 +46,19 @@ public final class ConvertUtils {
 
 //	--------------------------------------------------------------------------
 	/**
+	 * @deprecated Use {@link #toMap(ResourceBundle)} instead
+	 */
+	@Deprecated
+	public static Map<String, String> convertBundleToMap(ResourceBundle bundle) {
+		return toMap(bundle);
+	}
+	/**
 	 * Konwertuje zbiór zasobów na mapę.
 	 * 
 	 * @param bundle Zbiór zasobów do konwersji.
 	 * @return Mapa zasobów.
 	 */
-	public static Map<String, String> convertBundleToMap(ResourceBundle bundle) {
+	public static Map<String, String> toMap(ResourceBundle bundle) {
 		Map<String, String> map = new HashMap<String, String>();
 		Enumeration<String> keys = bundle.getKeys();
 		while(keys.hasMoreElements()) {
@@ -62,6 +69,13 @@ public final class ConvertUtils {
 	}
 
 	/**
+	 * @deprecated Use {@link #toByteArray(File)} instead
+	 */
+	@Deprecated
+	public static byte[] convertFileToByteArray(File file) throws IOException {
+		return toByteArray(file);
+	}
+	/**
 	 * Konwertuje plik na tablicę bajtów.
 	 * 
 	 * @param file Plik do konwersji.
@@ -69,10 +83,16 @@ public final class ConvertUtils {
 	 * 
 	 * @throws IOException W przypadku błędu odczytu pliku.
 	 */
-	public static byte[] convertFileToByteArray(File file) throws IOException {
-		return convertStreamToByteArray(new FileInputStream(file));
+	public static byte[] toByteArray(File file) throws IOException {
+		return toByteArray(new FileInputStream(file));
 	}
 
+	/**
+	 * @deprecated Use {@link #toByteArray(InputStream)} instead
+	 */
+	public static byte[] convertStreamToByteArray(InputStream stream) throws IOException {
+		return toByteArray(stream);
+	}
 	/**
 	 * Konwertuje struień wejściowy na tablicę bajtów.
 	 * 
@@ -81,7 +101,7 @@ public final class ConvertUtils {
 	 * 
 	 * @throws IOException W przypadku błędu odczytu strumienia.
 	 */
-	public static byte[] convertStreamToByteArray(InputStream stream) throws IOException {
+	public static byte[] toByteArray(InputStream stream) throws IOException {
 		// Wyznaczanie rozmiaru strumienia:
 		long length = stream.available();
 
@@ -113,23 +133,46 @@ public final class ConvertUtils {
 	}
 
 	/**
+	 * @deprecated Use {@link #toString(InputStream)} instead
+	 */
+	public static String convertStreamToString(InputStream stream) {
+		return toString(stream);
+	}
+	/**
 	 * Konwertuje strumień wejściowy na łańcuch znaków
 	 * 
 	 * @param stream Strumień wejściowy do konwersji.
 	 * @return Łańcuch zaków odczytanych ze strumienia.
 	 */
-	public static String convertStreamToString(InputStream stream) {
+	public static String toString(InputStream stream) {
 		Scanner s = new Scanner(stream).useDelimiter("\\A");
 		return s.hasNext() ? s.next() : "";
 	}
+	/**
+	 * Konwertuje strumień wejściowy na łańcuch znaków
+	 * 
+	 * @param stream Strumień wejściowy do konwersji.
+	 * @param encoding Kodowanie użyte do konwersji odczytu łańcucha.
+	 * @return Łańcuch zaków odczytanych ze strumienia.
+	 */
+	public static String toString(InputStream stream, String encoding) {
+		Scanner s = new Scanner(stream, encoding).useDelimiter("\\A");
+		return s.hasNext() ? s.next() : "";
+	}
 
+	/**
+	 * @deprecated Use {@link #toHexString(byte[])} instead
+	 */
+	public static String convertByteArrayToHexString(byte in[]) {
+		return toHexString(in);
+	}
 	/**
 	 * Konwertuje tablicę bajtów na łańcuch wartości szesnastkowych.
 	 * 
 	 * @param stream Tablica bajtów do konwersji.
 	 * @return Łańcuch danych szesnastkowych.
 	 */
-	public static String convertByteArrayToHexString(byte in[]) {
+	public static String toHexString(byte in[]) {
 		if(in == null || in.length <= 0) {
 			return null;
 		}
@@ -159,6 +202,12 @@ public final class ConvertUtils {
 	}
 
 	/**
+	 * @deprecated Use {@link #toDigest(byte[],String)} instead
+	 */
+	public static String convertBytesToDigest(byte[] bytes, String algorithm) throws NoSuchAlgorithmException {
+		return toDigest(bytes, algorithm);
+	}
+	/**
 	 * Konwertuje tablicę bajtów na skrót zgodnie z algorytmem określonym przez
 	 * parametr wywołania <code>algorithm</code>.
 	 * 
@@ -168,7 +217,7 @@ public final class ConvertUtils {
 	 * @return Łańcuch reprezentujący skrót.
 	 * @throws NoSuchAlgorithmException 
 	 */
-	public static String convertBytesToDigest(byte[] bytes, String algorithm) throws NoSuchAlgorithmException {
+	public static String toDigest(byte[] bytes, String algorithm) throws NoSuchAlgorithmException {
 		MessageDigest digest = MessageDigest.getInstance("MD5");
 		digest.update(bytes);
 		byte[] hash = digest.digest();
