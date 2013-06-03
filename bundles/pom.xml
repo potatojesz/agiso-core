@@ -21,5 +21,6 @@
 
 	<modules>
 		<module>org.agiso.core.lang</module>
+		<module>org.agiso.core.i18n</module>
 	</modules>
 </project>

@@ -25,6 +25,7 @@ package org.agiso.core.lang.exception;
  * wyjątku).
  * 
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @since 1.0
  */
 public class NotAllowedException extends BaseRuntimeException {
 	private static final long serialVersionUID = 1L;
