@@ -20,7 +20,8 @@
 	<inceptionYear>2013</inceptionYear>
 
 	<modules>
-		<module>org.agiso.core.lang</module>
 		<module>org.agiso.core.i18n</module>
+		<module>org.agiso.core.logging</module>
+		<module>org.agiso.core.lang</module>
 	</modules>
 </project>
