@@ -35,6 +35,13 @@ import org.agiso.core.i18n.annotation.I18n;
  */
 public abstract class I18nUtils {
 	/**
+	 * Bazowy interfejs wyliczenia zestawu komunikatów wykorzystywany do
+	 * znacznikowania tych wyliczeń.
+	 */
+	public interface I18nId {
+	}
+
+	/**
 	 * Interfejs dostarczyciela rozwinięć kodów komunikatów na komunikaty.
 	 */
 	public interface IMessageProvider {
