@@ -19,6 +19,7 @@
 package org.agiso.core.logging.slf4j;
 
 import org.agiso.core.i18n.util.I18nUtils;
+import org.agiso.core.i18n.util.I18nUtils.I18nId;
 import org.agiso.core.logging.EnumLogger;
 import org.agiso.core.logging.I18nLogger;
 import org.agiso.core.logging.Logger;
@@ -32,8 +33,8 @@ import org.apache.commons.lang.ArrayUtils;
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
  * @since 1.0
  */
-class SLF4JLogger<T, L extends org.slf4j.Logger>
-		implements Logger, EnumLogger, I18nLogger, MessageLogger {
+class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
+		implements Logger, EnumLogger, I18nLogger<E>, MessageLogger {
 	protected L logger;
 
 //	--------------------------------------------------------------------------
@@ -59,7 +60,7 @@ class SLF4JLogger<T, L extends org.slf4j.Logger>
 		logger.trace(I18nUtils.getMessage(e, args));
 	}
 	@Override
-	public void trace(LogId logId, Object... args) {
+	public void trace(E logId, Object... args) {
 		logger.trace(I18nUtils.getMessage((Enum<?>)logId, args));
 	}
 	@Override
@@ -79,7 +80,7 @@ class SLF4JLogger<T, L extends org.slf4j.Logger>
 		logger.trace(I18nUtils.getMessage(e, args), t);
 	}
 	@Override
-	public void trace(Throwable t, LogId logId, Object... args) {
+	public void trace(Throwable t, E logId, Object... args) {
 		logger.trace(I18nUtils.getMessage((Enum<?>)logId, args), t);
 	}
 	@Override
@@ -104,7 +105,7 @@ class SLF4JLogger<T, L extends org.slf4j.Logger>
 		logger.debug(I18nUtils.getMessage(e, args));
 	}
 	@Override
-	public void debug(LogId logId, Object... args) {
+	public void debug(E logId, Object... args) {
 		logger.debug(I18nUtils.getMessage((Enum<?>)logId, args));
 	}
 	@Override
@@ -124,7 +125,7 @@ class SLF4JLogger<T, L extends org.slf4j.Logger>
 		logger.debug(I18nUtils.getMessage(e, args), t);
 	}
 	@Override
-	public void debug(Throwable t, LogId logId, Object... args) {
+	public void debug(Throwable t, E logId, Object... args) {
 		logger.debug(I18nUtils.getMessage((Enum<?>)logId, args), t);
 	}
 	@Override
@@ -149,7 +150,7 @@ class SLF4JLogger<T, L extends org.slf4j.Logger>
 		logger.info(I18nUtils.getMessage(e, args));
 	}
 	@Override
-	public void info(LogId logId, Object... args) {
+	public void info(E logId, Object... args) {
 		logger.info(I18nUtils.getMessage((Enum<?>)logId, args));
 	}
 	@Override
@@ -169,7 +170,7 @@ class SLF4JLogger<T, L extends org.slf4j.Logger>
 		logger.info(I18nUtils.getMessage(e, args), t);
 	}
 	@Override
-	public void info(Throwable t, LogId logId, Object... args) {
+	public void info(Throwable t, E logId, Object... args) {
 		logger.info(I18nUtils.getMessage((Enum<?>)logId, args), t);
 	}
 	@Override
@@ -194,7 +195,7 @@ class SLF4JLogger<T, L extends org.slf4j.Logger>
 		logger.warn(I18nUtils.getMessage(e, args));
 	}
 	@Override
-	public void warn(LogId logId, Object... args) {
+	public void warn(E logId, Object... args) {
 		logger.warn(I18nUtils.getMessage((Enum<?>)logId, args));
 	}
 	@Override
@@ -214,7 +215,7 @@ class SLF4JLogger<T, L extends org.slf4j.Logger>
 		logger.warn(I18nUtils.getMessage(e, args), t);
 	}
 	@Override
-	public void warn(Throwable t, LogId logId, Object... args) {
+	public void warn(Throwable t, E logId, Object... args) {
 		logger.warn(I18nUtils.getMessage((Enum<?>)logId, args), t);
 	}
 	@Override
@@ -239,7 +240,7 @@ class SLF4JLogger<T, L extends org.slf4j.Logger>
 		logger.error(I18nUtils.getMessage(e, args));
 	}
 	@Override
-	public void error(LogId logId, Object... args) {
+	public void error(E logId, Object... args) {
 		logger.error(I18nUtils.getMessage((Enum<?>)logId, args));
 	}
 	@Override
@@ -259,7 +260,7 @@ class SLF4JLogger<T, L extends org.slf4j.Logger>
 		logger.error(I18nUtils.getMessage(e, args), t);
 	}
 	@Override
-	public void error(Throwable t, LogId logId, Object... args) {
+	public void error(Throwable t, E logId, Object... args) {
 		logger.error(I18nUtils.getMessage((Enum<?>)logId, args), t);
 	}
 	@Override

@@ -18,6 +18,7 @@
  */
 package org.agiso.core.logging.slf4j;
 
+import org.agiso.core.i18n.util.I18nUtils.I18nId;
 import org.slf4j.LoggerFactory;
 import org.slf4j.spi.LocationAwareLogger;
 
@@ -31,24 +32,24 @@ public class SLF4JLoggerFactory {
 	/**
 	 * Pobiera loggera SLF4J dla określonej klasy.
 	 */
-	public static <T> SLF4JLogger<T, ?> getLogger(Class<T> clazz) {
+	public static <T, E extends I18nId> SLF4JLogger<T, ?, E> getLogger(Class<T> clazz) {
 		org.slf4j.Logger logger = LoggerFactory.getLogger(clazz);
 		if(logger instanceof LocationAwareLogger) {
-			return new SLF4JLocationAwareLogger<T>((LocationAwareLogger)logger);
+			return new SLF4JLocationAwareLogger<T, E>((LocationAwareLogger)logger);
 		} else {
-			return new SLF4JLogger<T, org.slf4j.Logger>(logger);
+			return new SLF4JLogger<T, org.slf4j.Logger, E>(logger);
 		}
 	}
 
 	/**
 	 * Pobiera loggera SLF4J niezależnego od lokalizacji dla określonej klasy.
 	 */
-	public static <T> SLF4JLogger<T, ?> getLogger(Class<T> clazz, Class<?> caller) {
+	public static <T, E extends I18nId> SLF4JLogger<T, ?, E> getLogger(Class<T> clazz, Class<?> caller) {
 		org.slf4j.Logger logger = LoggerFactory.getLogger(clazz);
 		if(logger instanceof LocationAwareLogger) {
-			return new SLF4JCallerLocationAwareLogger<T>((LocationAwareLogger)logger, caller);
+			return new SLF4JCallerLocationAwareLogger<T, E>((LocationAwareLogger)logger, caller);
 		} else {
-			return new SLF4JLogger<T, org.slf4j.Logger>(logger);
+			return new SLF4JLogger<T, org.slf4j.Logger, E>(logger);
 		}
 	}
 }

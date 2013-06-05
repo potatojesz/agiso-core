@@ -19,6 +19,7 @@
 package org.agiso.core.logging.slf4j;
 
 import org.agiso.core.i18n.util.I18nUtils;
+import org.agiso.core.i18n.util.I18nUtils.I18nId;
 import org.slf4j.spi.LocationAwareLogger;
 
 /**
@@ -30,7 +31,7 @@ import org.slf4j.spi.LocationAwareLogger;
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
  * @since 1.0
  */
-class SLF4JLocationAwareLogger<T> extends SLF4JLogger<T, LocationAwareLogger> {
+class SLF4JLocationAwareLogger<T, E extends I18nId> extends SLF4JLogger<T, LocationAwareLogger, E> {
 	private static final String FQCN = SLF4JLocationAwareLogger.class.getName();
 
 //	--------------------------------------------------------------------------
@@ -48,7 +49,7 @@ class SLF4JLocationAwareLogger<T> extends SLF4JLogger<T, LocationAwareLogger> {
 		logger.log(null, FQCN, LocationAwareLogger.TRACE_INT, I18nUtils.getMessage(e, args), null, null);
 	}
 	@Override
-	public void trace(LogId logId, Object... args) {
+	public void trace(E logId, Object... args) {
 		logger.log(null, FQCN, LocationAwareLogger.TRACE_INT, I18nUtils.getMessage((Enum<?>)logId, args), null, null);
 	}
 	@Override
@@ -64,7 +65,7 @@ class SLF4JLocationAwareLogger<T> extends SLF4JLogger<T, LocationAwareLogger> {
 		logger.log(null, FQCN, LocationAwareLogger.TRACE_INT, I18nUtils.getMessage(e, args), null, t);
 	}
 	@Override
-	public void trace(Throwable t, LogId logId, Object... args) {
+	public void trace(Throwable t, E logId, Object... args) {
 		logger.log(null, FQCN, LocationAwareLogger.TRACE_INT, I18nUtils.getMessage((Enum<?>)logId, args), null, t);
 	}
 	@Override
@@ -81,7 +82,7 @@ class SLF4JLocationAwareLogger<T> extends SLF4JLogger<T, LocationAwareLogger> {
 		logger.log(null, FQCN, LocationAwareLogger.INFO_INT, I18nUtils.getMessage(e, args), null, null);
 	}
 	@Override
-	public void info(LogId logId, Object... args) {
+	public void info(E logId, Object... args) {
 		logger.log(null, FQCN, LocationAwareLogger.INFO_INT, I18nUtils.getMessage((Enum<?>)logId, args), null, null);
 	}
 	@Override
@@ -97,7 +98,7 @@ class SLF4JLocationAwareLogger<T> extends SLF4JLogger<T, LocationAwareLogger> {
 		logger.log(null, FQCN, LocationAwareLogger.INFO_INT, I18nUtils.getMessage(e, args), null, t);
 	}
 	@Override
-	public void info(Throwable t, LogId logId, Object... args) {
+	public void info(Throwable t, E logId, Object... args) {
 		logger.log(null, FQCN, LocationAwareLogger.INFO_INT, I18nUtils.getMessage((Enum<?>)logId, args), null, t);
 	}
 	@Override
@@ -114,7 +115,7 @@ class SLF4JLocationAwareLogger<T> extends SLF4JLogger<T, LocationAwareLogger> {
 		logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, I18nUtils.getMessage(e, args), null, null);
 	}
 	@Override
-	public void debug(LogId logId, Object... args) {
+	public void debug(E logId, Object... args) {
 		logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, I18nUtils.getMessage((Enum<?>)logId, args), null, null);
 	}
 	@Override
@@ -130,7 +131,7 @@ class SLF4JLocationAwareLogger<T> extends SLF4JLogger<T, LocationAwareLogger> {
 		logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, I18nUtils.getMessage(e, args), null, t);
 	}
 	@Override
-	public void debug(Throwable t, LogId logId, Object... args) {
+	public void debug(Throwable t, E logId, Object... args) {
 		logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, I18nUtils.getMessage((Enum<?>)logId, args), null, t);
 	}
 	@Override
@@ -147,7 +148,7 @@ class SLF4JLocationAwareLogger<T> extends SLF4JLogger<T, LocationAwareLogger> {
 		logger.log(null, FQCN, LocationAwareLogger.WARN_INT, I18nUtils.getMessage(e, args), null, null);
 	}
 	@Override
-	public void warn(LogId logId, Object... args) {
+	public void warn(E logId, Object... args) {
 		logger.log(null, FQCN, LocationAwareLogger.WARN_INT, I18nUtils.getMessage((Enum<?>)logId, args), null, null);
 	}
 	@Override
@@ -163,7 +164,7 @@ class SLF4JLocationAwareLogger<T> extends SLF4JLogger<T, LocationAwareLogger> {
 		logger.log(null, FQCN, LocationAwareLogger.WARN_INT, I18nUtils.getMessage(e, args), null, t);
 	}
 	@Override
-	public void warn(Throwable t, LogId logId, Object... args) {
+	public void warn(Throwable t, E logId, Object... args) {
 		logger.log(null, FQCN, LocationAwareLogger.WARN_INT, I18nUtils.getMessage((Enum<?>)logId, args), null, t);
 	}
 	@Override
@@ -180,7 +181,7 @@ class SLF4JLocationAwareLogger<T> extends SLF4JLogger<T, LocationAwareLogger> {
 		logger.log(null, FQCN, LocationAwareLogger.ERROR_INT, I18nUtils.getMessage(e, args), null, null);
 	}
 	@Override
-	public void error(LogId logId, Object... args) {
+	public void error(E logId, Object... args) {
 		logger.log(null, FQCN, LocationAwareLogger.ERROR_INT, I18nUtils.getMessage((Enum<?>)logId, args), null, null);
 	}
 	@Override
@@ -196,7 +197,7 @@ class SLF4JLocationAwareLogger<T> extends SLF4JLogger<T, LocationAwareLogger> {
 		logger.log(null, FQCN, LocationAwareLogger.ERROR_INT, I18nUtils.getMessage(e, args), null, t);
 	}
 	@Override
-	public void error(Throwable t, LogId logId, Object... args) {
+	public void error(Throwable t, E logId, Object... args) {
 		logger.log(null, FQCN, LocationAwareLogger.ERROR_INT, I18nUtils.getMessage((Enum<?>)logId, args), null, t);
 	}
 	@Override
