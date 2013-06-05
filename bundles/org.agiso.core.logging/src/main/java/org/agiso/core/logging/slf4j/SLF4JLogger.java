@@ -23,7 +23,6 @@ import org.agiso.core.i18n.util.I18nUtils.I18nId;
 import org.agiso.core.logging.EnumLogger;
 import org.agiso.core.logging.I18nLogger;
 import org.agiso.core.logging.Logger;
-import org.agiso.core.logging.MessageLogger;
 import org.apache.commons.lang.ArrayUtils;
 
 /**
@@ -34,7 +33,7 @@ import org.apache.commons.lang.ArrayUtils;
  * @since 1.0
  */
 class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
-		implements Logger, EnumLogger, I18nLogger<E>, MessageLogger {
+		implements Logger, EnumLogger, I18nLogger<E> {
 	protected L logger;
 
 //	--------------------------------------------------------------------------
@@ -60,12 +59,8 @@ class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
 		logger.trace(I18nUtils.getMessage(e, args));
 	}
 	@Override
-	public void trace(E logId, Object... args) {
-		logger.trace(I18nUtils.getMessage((Enum<?>)logId, args));
-	}
-	@Override
-	public void trace(MessageId messageId, Object... args) {
-		logger.trace(I18nUtils.getMessage((Enum<?>)messageId, args));
+	public void trace(E i18nId, Object... args) {
+		logger.trace(I18nUtils.getMessage((Enum<?>)i18nId, args));
 	}
 	@Override
 	public void trace(Throwable t, String message, Object... args) {
@@ -80,12 +75,8 @@ class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
 		logger.trace(I18nUtils.getMessage(e, args), t);
 	}
 	@Override
-	public void trace(Throwable t, E logId, Object... args) {
-		logger.trace(I18nUtils.getMessage((Enum<?>)logId, args), t);
-	}
-	@Override
-	public void trace(Throwable t, MessageId messageId, Object... args) {
-		logger.trace(I18nUtils.getMessage((Enum<?>)messageId, args), t);
+	public void trace(Throwable t, E i18nId, Object... args) {
+		logger.trace(I18nUtils.getMessage((Enum<?>)i18nId, args), t);
 	}
 
 	@Override
@@ -105,12 +96,8 @@ class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
 		logger.debug(I18nUtils.getMessage(e, args));
 	}
 	@Override
-	public void debug(E logId, Object... args) {
-		logger.debug(I18nUtils.getMessage((Enum<?>)logId, args));
-	}
-	@Override
-	public void debug(MessageId messageId, Object... args) {
-		logger.debug(I18nUtils.getMessage((Enum<?>)messageId, args));
+	public void debug(E i18nId, Object... args) {
+		logger.debug(I18nUtils.getMessage((Enum<?>)i18nId, args));
 	}
 	@Override
 	public void debug(Throwable t, String message, Object... args) {
@@ -125,12 +112,8 @@ class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
 		logger.debug(I18nUtils.getMessage(e, args), t);
 	}
 	@Override
-	public void debug(Throwable t, E logId, Object... args) {
-		logger.debug(I18nUtils.getMessage((Enum<?>)logId, args), t);
-	}
-	@Override
-	public void debug(Throwable t, MessageId messageId, Object... args) {
-		logger.debug(I18nUtils.getMessage((Enum<?>)messageId, args), t);
+	public void debug(Throwable t, E i18nId, Object... args) {
+		logger.debug(I18nUtils.getMessage((Enum<?>)i18nId, args), t);
 	}
 
 	@Override
@@ -150,12 +133,8 @@ class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
 		logger.info(I18nUtils.getMessage(e, args));
 	}
 	@Override
-	public void info(E logId, Object... args) {
-		logger.info(I18nUtils.getMessage((Enum<?>)logId, args));
-	}
-	@Override
-	public void info(MessageId messageId, Object... args) {
-		logger.info(I18nUtils.getMessage((Enum<?>)messageId, args));
+	public void info(E i18nId, Object... args) {
+		logger.info(I18nUtils.getMessage((Enum<?>)i18nId, args));
 	}
 	@Override
 	public void info(Throwable t, String message, Object... args) {
@@ -170,12 +149,8 @@ class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
 		logger.info(I18nUtils.getMessage(e, args), t);
 	}
 	@Override
-	public void info(Throwable t, E logId, Object... args) {
-		logger.info(I18nUtils.getMessage((Enum<?>)logId, args), t);
-	}
-	@Override
-	public void info(Throwable t, MessageId messageId, Object... args) {
-		logger.info(I18nUtils.getMessage((Enum<?>)messageId, args), t);
+	public void info(Throwable t, E i18nId, Object... args) {
+		logger.info(I18nUtils.getMessage((Enum<?>)i18nId, args), t);
 	}
 
 	@Override
@@ -195,12 +170,8 @@ class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
 		logger.warn(I18nUtils.getMessage(e, args));
 	}
 	@Override
-	public void warn(E logId, Object... args) {
-		logger.warn(I18nUtils.getMessage((Enum<?>)logId, args));
-	}
-	@Override
-	public void warn(MessageId messageId, Object... args) {
-		logger.warn(I18nUtils.getMessage((Enum<?>)messageId, args));
+	public void warn(E i18nId, Object... args) {
+		logger.warn(I18nUtils.getMessage((Enum<?>)i18nId, args));
 	}
 	@Override
 	public void warn(Throwable t, String message, Object... args) {
@@ -215,12 +186,8 @@ class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
 		logger.warn(I18nUtils.getMessage(e, args), t);
 	}
 	@Override
-	public void warn(Throwable t, E logId, Object... args) {
-		logger.warn(I18nUtils.getMessage((Enum<?>)logId, args), t);
-	}
-	@Override
-	public void warn(Throwable t, MessageId messageId, Object... args) {
-		logger.warn(I18nUtils.getMessage((Enum<?>)messageId, args), t);
+	public void warn(Throwable t, E i18nId, Object... args) {
+		logger.warn(I18nUtils.getMessage((Enum<?>)i18nId, args), t);
 	}
 
 	@Override
@@ -240,12 +207,8 @@ class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
 		logger.error(I18nUtils.getMessage(e, args));
 	}
 	@Override
-	public void error(E logId, Object... args) {
-		logger.error(I18nUtils.getMessage((Enum<?>)logId, args));
-	}
-	@Override
-	public void error(MessageId messageId, Object... args) {
-		logger.error(I18nUtils.getMessage((Enum<?>)messageId, args));
+	public void error(E i18nId, Object... args) {
+		logger.error(I18nUtils.getMessage((Enum<?>)i18nId, args));
 	}
 	@Override
 	public void error(Throwable t, String message, Object... args) {
@@ -260,11 +223,7 @@ class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>
 		logger.error(I18nUtils.getMessage(e, args), t);
 	}
 	@Override
-	public void error(Throwable t, E logId, Object... args) {
-		logger.error(I18nUtils.getMessage((Enum<?>)logId, args), t);
-	}
-	@Override
-	public void error(Throwable t, MessageId messageId, Object... args) {
-		logger.error(I18nUtils.getMessage((Enum<?>)messageId, args), t);
+	public void error(Throwable t, E i18nId, Object... args) {
+		logger.error(I18nUtils.getMessage((Enum<?>)i18nId, args), t);
 	}
 }

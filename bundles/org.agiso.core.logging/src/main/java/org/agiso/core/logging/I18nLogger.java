@@ -29,22 +29,18 @@ import org.agiso.core.i18n.util.I18nUtils.I18nId;
  * @since 1.0
  */
 public interface I18nLogger<E extends I18nId> extends LoggerInformer {
-	public interface LogId extends I18nId {
-	}
+	public void trace(E i18nId, Object... args);
+	public void trace(Throwable t, E i18nId, Object... args);
 
-//	--------------------------------------------------------------------------
-	public void trace(E logId, Object... args);
-	public void trace(Throwable t, E logId, Object... args);
+	public void debug(E i18nId, Object... args);
+	public void debug(Throwable t, E i18nId, Object... args);
 
-	public void debug(E logId, Object... args);
-	public void debug(Throwable t, E logId, Object... args);
+	public void info(E i18nId, Object... args);
+	public void info(Throwable t, E i18nId, Object... args);
 
-	public void info(E logId, Object... args);
-	public void info(Throwable t, E logId, Object... args);
+	public void warn(E i18nId, Object... args);
+	public void warn(Throwable t, E i18nId, Object... args);
 
-	public void warn(E logId, Object... args);
-	public void warn(Throwable t, E logId, Object... args);
-
-	public void error(E logId, Object... args);
-	public void error(Throwable t, E logId, Object... args);
+	public void error(E i18nId, Object... args);
+	public void error(Throwable t, E i18nId, Object... args);
 }
