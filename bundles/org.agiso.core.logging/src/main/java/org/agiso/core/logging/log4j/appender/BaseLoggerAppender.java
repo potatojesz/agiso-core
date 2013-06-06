@@ -31,7 +31,7 @@ import org.apache.log4j.spi.LoggingEvent;
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
  * @since 1.0
  */
-public abstract class BaseLoggerAppender extends AppenderSkeleton {
+abstract class BaseLoggerAppender extends AppenderSkeleton {
 	/**
 	 * size of LoggingEvent buffer before writting to the database.
 	 * Default is 1.
