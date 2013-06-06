@@ -1,4 +1,4 @@
-/* org.agiso.core.logging.Logger (04-06-2013)
+/* org.agiso.core.logging.Logger (2013-06-04)
  * 
  * Logger.java
  * 

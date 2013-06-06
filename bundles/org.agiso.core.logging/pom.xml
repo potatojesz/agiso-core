@@ -36,6 +36,14 @@
 			<groupId>org.agiso.core</groupId>
 			<artifactId>org.agiso.core.i18n</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.agiso.core</groupId>
+			<artifactId>org.agiso.core.lang</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
@@ -47,6 +55,12 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>com.springsource.org.apache.commons.lang</artifactId>
 			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.log4j</groupId>
+			<artifactId>com.springsource.org.apache.log4j</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

@@ -1,4 +1,4 @@
-/* org.agiso.core.logging.I18nLogger (04-06-2013)
+/* org.agiso.core.logging.I18nLogger (2013-06-04)
  * 
  * I18nLogger.java
  * 

@@ -1,8 +1,8 @@
-/* org.agiso.core.logging.LoggerInformer (2013-06-04)
+/* org.agiso.core.logging.LoggerEvent (2012-01-04)
  * 
- * LoggerInformer.java
+ * LoggerEvent.java
  * 
- * Copyright 2013 agiso.org
+ * Copyright 2011 agiso.org.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,26 +18,19 @@
  */
 package org.agiso.core.logging;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- * 
+ * Interfejs zdarzenia loggera.
  * 
  * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @since 1.0
  */
-public interface LoggerInformer {
-	// 1. trace (the least serious)
-	public boolean isTraceEnabled();
+public interface LoggerEvent extends Serializable {
+	public String getLogLevel();
 
-	// 2. debug
-	public boolean isDebugEnabled();
+	public Date getTimeStamp();
 
-	// 3. info
-	public boolean isInfoEnabled();
-
-	// 4. warn
-	public boolean isWarnEnabled();
-
-	// 5. error
-	public boolean isErrorEnabled();
-
-	//TODO: 6. fatal (the most serious)
+	public String getMessage();
 }

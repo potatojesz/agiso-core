@@ -1,4 +1,4 @@
-/* org.agiso.core.logging.EnumLogger (04-06-2013)
+/* org.agiso.core.logging.EnumLogger (2013-06-04)
  * 
  * EnumLogger.java
  * 
