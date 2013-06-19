@@ -143,13 +143,14 @@ public abstract class DateUtils {
 		return getDayDate(calendar);
 	}
 	/**
-	 * Zaokrągla datę przekazanego kalendarza do pełnego dnia.
+	 * Zaokrągla datę przekazanego kalendarza do pełnego dnia uwzględniając
+	 * przesunięcie strefy czasowej (ZONE_OFFSET) i czasu letniego (DST_OFFSET).
 	 * 
 	 * @param calendar Kalendarz z datą do zaokrąglenia.
 	 * @return Obiekt {@link Timestamp} reprezentujący zaokrągloną datę.
 	 */
 	public static Date getDayDate(Calendar calendar) {
-		int offset = calendar.get(Calendar.ZONE_OFFSET);
+		int offset = calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET);
 		return new Timestamp(((calendar.getTimeInMillis() + offset) / 86400000 * 86400000) - offset);
 	}
 

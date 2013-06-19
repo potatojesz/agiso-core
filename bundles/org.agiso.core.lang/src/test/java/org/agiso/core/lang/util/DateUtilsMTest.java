@@ -24,6 +24,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
+import java.util.TimeZone;
 
 import org.agiso.core.lang.util.DateUtils.ICalendarFactory;
 import org.testng.annotations.Test;
@@ -36,6 +37,8 @@ import org.testng.annotations.Test;
  */
 @Test(singleThreaded = false)
 public class DateUtilsMTest {
+	private static final TimeZone CET = TimeZone.getTimeZone("CET");
+
 	@Test
 	public void testGetTimestamp() throws Exception {
 		Date timestamp;
@@ -48,15 +51,17 @@ public class DateUtilsMTest {
 
 		ICalendarFactory calendarFactory = mock(ICalendarFactory.class);
 		Calendar srcCalendar = Calendar.getInstance();
-		srcCalendar.set(2010, 0, 16);
+		when(calendarFactory.getCalendar()).thenReturn(srcCalendar);
+		DateUtils.setCalendarFactory(calendarFactory);
+
+		srcCalendar.set(Calendar.YEAR, 2010);
+		srcCalendar.set(Calendar.MONTH, 0);
+		srcCalendar.set(Calendar.DAY_OF_MONTH, 16);
 		srcCalendar.set(Calendar.HOUR_OF_DAY, 1);
 		srcCalendar.set(Calendar.MINUTE, 2);
 		srcCalendar.set(Calendar.SECOND, 3);
 		srcCalendar.set(Calendar.MILLISECOND, 4);
-		when(calendarFactory.getCalendar()).thenReturn(srcCalendar);
 
-		DateUtils.setCalendarFactory(calendarFactory);
-		timestamp = DateUtils.getTimestamp();
 		calendar.setTime(timestamp = DateUtils.getTimestamp());
 		assert Timestamp.class.equals(timestamp.getClass());
 		assert 2010 == calendar.get(Calendar.YEAR);
@@ -69,17 +74,86 @@ public class DateUtilsMTest {
 	}
 
 	@Test
-	public void testGetRandomDate() throws Exception {
+	public void testGetDayDate() throws Exception {
+		Date dayDate;
+		Calendar calendar = Calendar.getInstance();
+
+		// Sprawdzanie popawności działania dla daty bieżącej:
+		DateUtils.setCalendarFactory(null);
+		calendar.setTime(dayDate = DateUtils.getDayDate());
+		assert Timestamp.class.equals(dayDate.getClass());
+		assert 0 == calendar.get(Calendar.HOUR);
+		assert 0 == calendar.get(Calendar.MINUTE);
+		assert 0 == calendar.get(Calendar.SECOND);
+		assert 0 == calendar.get(Calendar.MILLISECOND);
+
+		// Sprawdzanie poprawności działania dla daty konkretnej:
 		ICalendarFactory calendarFactory = mock(ICalendarFactory.class);
 		Calendar srcCalendar = Calendar.getInstance();
-		srcCalendar.set(2010, 0, 16);
+		when(calendarFactory.getCalendar()).thenReturn(srcCalendar);
+		DateUtils.setCalendarFactory(calendarFactory);
+
+		// CET 2010-01-16 01:02:03.04 (czas zimowy)
+		srcCalendar.setTimeZone(CET);
+		srcCalendar.set(Calendar.YEAR, 2010);
+		srcCalendar.set(Calendar.MONTH, 0);
+		srcCalendar.set(Calendar.DAY_OF_MONTH, 16);
 		srcCalendar.set(Calendar.HOUR_OF_DAY, 1);
 		srcCalendar.set(Calendar.MINUTE, 2);
 		srcCalendar.set(Calendar.SECOND, 3);
 		srcCalendar.set(Calendar.MILLISECOND, 4);
-		when(calendarFactory.getCalendar()).thenReturn(srcCalendar);
+		assert 0 == srcCalendar.get(Calendar.DST_OFFSET);
 
+		calendar = DateUtils.getCalendar();
+		calendar.setTime(dayDate = DateUtils.getDayDate());
+		assert Timestamp.class.equals(dayDate.getClass());
+		assert CET.equals(calendar.getTimeZone());
+		assert 2010 == calendar.get(Calendar.YEAR);
+		assert    0 == calendar.get(Calendar.MONTH);
+		assert   16 == calendar.get(Calendar.DAY_OF_MONTH);
+		assert    0 == calendar.get(Calendar.HOUR_OF_DAY);
+		assert    0 == calendar.get(Calendar.MINUTE);
+		assert    0 == calendar.get(Calendar.SECOND);
+		assert    0 == calendar.get(Calendar.MILLISECOND);
+
+		// CET 2010-07-16 01:02:03.04 (czas letni)
+		srcCalendar.setTimeZone(CET);
+		srcCalendar.set(Calendar.YEAR, 2010);
+		srcCalendar.set(Calendar.MONTH, 6);
+		srcCalendar.set(Calendar.DAY_OF_MONTH, 16);
+		srcCalendar.set(Calendar.HOUR_OF_DAY, 1);
+		srcCalendar.set(Calendar.MINUTE, 2);
+		srcCalendar.set(Calendar.SECOND, 3);
+		srcCalendar.set(Calendar.MILLISECOND, 4);
+		assert 3600000 == srcCalendar.get(Calendar.DST_OFFSET);
+
+		calendar = DateUtils.getCalendar();
+		calendar.setTime(dayDate = DateUtils.getDayDate());
+		assert Timestamp.class.equals(dayDate.getClass());
+		assert CET.equals(calendar.getTimeZone());
+		assert 2010 == calendar.get(Calendar.YEAR);
+		assert    6 == calendar.get(Calendar.MONTH);
+		assert   16 == calendar.get(Calendar.DAY_OF_MONTH);
+		assert    0 == calendar.get(Calendar.HOUR_OF_DAY);
+		assert    0 == calendar.get(Calendar.MINUTE);
+		assert    0 == calendar.get(Calendar.SECOND);
+		assert    0 == calendar.get(Calendar.MILLISECOND);
+	}
+
+	@Test
+	public void testGetRandomDate() throws Exception {
+		ICalendarFactory calendarFactory = mock(ICalendarFactory.class);
+		Calendar srcCalendar = Calendar.getInstance();
+		when(calendarFactory.getCalendar()).thenReturn(srcCalendar);
 		DateUtils.setCalendarFactory(calendarFactory);
+
+		srcCalendar.set(Calendar.YEAR, 2010);
+		srcCalendar.set(Calendar.MONTH, 0);
+		srcCalendar.set(Calendar.DAY_OF_MONTH, 16);
+		srcCalendar.set(Calendar.HOUR_OF_DAY, 1);
+		srcCalendar.set(Calendar.MINUTE, 2);
+		srcCalendar.set(Calendar.SECOND, 3);
+		srcCalendar.set(Calendar.MILLISECOND, 4);
 
 		Date date;
 		Date begin = new Date(0);
