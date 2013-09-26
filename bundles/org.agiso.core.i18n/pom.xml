@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>org.agiso.core</groupId>
 		<artifactId>org.agiso.core.pom</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version><!--org.agiso.core-->0.0.1.BUILD-130926</version>
 		<relativePath>../../pom/org.agiso.core.pom/pom.xml</relativePath>
 	</parent>
 

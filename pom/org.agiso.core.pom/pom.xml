@@ -8,7 +8,7 @@
 
 	<groupId>org.agiso.core</groupId>
 	<artifactId>org.agiso.core.pom</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version><!--org.agiso.core-->0.0.1.BUILD-130926</version>
 	<packaging>pom</packaging>
 
 	<name>AGISO Core POM</name>
@@ -31,6 +31,17 @@
 		<url>scm:git:git@github.com:kkopacz/org.agiso.core.git</url>
 		<developerConnection>scm:git:git@github.com:kkopacz/org.agiso.core.git</developerConnection>
 	</scm>
+
+	<!-- distributionManagement>
+		<repository>
+			<id>agiso-releases</id>
+			<url>http://repo.agiso.org/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>agiso-snapshots</id>
+			<url>http://repo.agiso.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement -->
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
