@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>org.agiso.core</groupId>
 		<artifactId>org.agiso.core.pom</artifactId>
-		<version><!--org.agiso.core-->0.0.1.BUILD-130926</version>
+		<version><!--org.agiso.core-->0.0.1.BUILD-SNAPSHOT</version>
 		<relativePath>../../pom/org.agiso.core.pom/pom.xml</relativePath>
 	</parent>
 
@@ -35,38 +35,38 @@
 		<dependency>
 			<groupId>org.agiso.core</groupId>
 			<artifactId>org.agiso.core.i18n</artifactId>
-			<version><!--org.agiso.core-->0.0.1.BUILD-130926</version>
+			<version><!--org.agiso.core-->0.0.1.BUILD-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.agiso.core</groupId>
 			<artifactId>org.agiso.core.lang</artifactId>
-			<version><!--org.agiso.core-->0.0.1.BUILD-130926</version>
+			<version><!--org.agiso.core-->0.0.1.BUILD-SNAPSHOT</version>
 			<scope>compile</scope>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.agiso.core</groupId>
 			<artifactId>org.agiso.core.beans</artifactId>
-			<version><!--org.agiso.core-->0.0.1.BUILD-130926</version>
+			<version><!--org.agiso.core-->0.0.1.BUILD-SNAPSHOT</version>
 			<scope>compile</scope>
 			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>com.springsource.slf4j.api</artifactId>
+			<artifactId>slf4j-api</artifactId>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>com.springsource.org.apache.commons.lang</artifactId>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
 			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.log4j</groupId>
-			<artifactId>com.springsource.org.apache.log4j</artifactId>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

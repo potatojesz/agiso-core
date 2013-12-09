@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>org.agiso.core</groupId>
 		<artifactId>org.agiso.core.pom</artifactId>
-		<version><!--org.agiso.core-->0.0.1.BUILD-130926</version>
+		<version><!--org.agiso.core-->0.0.1.BUILD-SNAPSHOT</version>
 		<relativePath>../../pom/org.agiso.core.pom/pom.xml</relativePath>
 	</parent>
 
@@ -33,18 +33,18 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>com.springsource.org.apache.commons.lang</artifactId>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>com.springsource.org.apache.commons.beanutils</artifactId>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
 			<scope>compile</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.commons</groupId>
-					<artifactId>com.springsource.org.apache.commons.logging</artifactId>
+					<artifactId>commons-logging</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>

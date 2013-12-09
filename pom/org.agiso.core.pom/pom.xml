@@ -8,7 +8,7 @@
 
 	<groupId>org.agiso.core</groupId>
 	<artifactId>org.agiso.core.pom</artifactId>
-	<version><!--org.agiso.core-->0.0.1.BUILD-130926</version>
+	<version><!--org.agiso.core-->0.0.1.BUILD-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>AGISO Core POM</name>
@@ -51,13 +51,14 @@
 		<log4j.version>1.2.16</log4j.version>
 
 		<!-- Apache Commons libraries versions -->
-		<commons.lang.version>2.4.0</commons.lang.version>
-		<commons.beanutils.version>1.8.0</commons.beanutils.version>
+		<commons.lang.version>2.6</commons.lang.version>
+		<commons.beanutils.version>1.8.3</commons.beanutils.version>
 
 		<!-- Testing libraries versions -->
+		<junit.version>4.11</junit.version>
 		<testng.version>6.5.2</testng.version>
 		<mockito.verison>1.8.4</mockito.verison>
-		<jcommander.version>1.12.0</jcommander.version>
+		<jcommander.version>1.12</jcommander.version>
 	</properties>
 
 	<build>
@@ -118,8 +119,8 @@
 					<version>2.9</version>
 					<configuration>
 						<printSummary>true</printSummary>
-						<junitArtifactName>org.junit:com.springsource.org.junit</junitArtifactName>
-						<testNGArtifactName>org.testng:com.springsource.org.testng</testNGArtifactName>
+						<junitArtifactName>junit:junit</junitArtifactName>
+						<testNGArtifactName>org.testng:testng</testNGArtifactName>
 					</configuration>
 				</plugin>
 			</plugins>
@@ -143,56 +144,61 @@
 			<!-- Logging dependency management -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
-				<artifactId>com.springsource.slf4j.org.apache.commons.logging</artifactId>
+				<artifactId>jcl-over-slf4j</artifactId>
 				<version>${slf4j.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
-				<artifactId>com.springsource.slf4j.api</artifactId>
+				<artifactId>slf4j-api</artifactId>
 				<version>${slf4j.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
-				<artifactId>com.springsource.slf4j.simple</artifactId>
+				<artifactId>slf4j-simple</artifactId>
 				<version>${slf4j.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
-				<artifactId>com.springsource.slf4j.log4j</artifactId>
+				<artifactId>slf4j-log4j12</artifactId>
 				<version>${slf4j.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.apache.log4j</groupId>
-				<artifactId>com.springsource.org.apache.log4j</artifactId>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
 				<version>${log4j.version}</version>
 			</dependency>
 
 			<!-- Apache Commons dependency management -->
 			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>com.springsource.org.apache.commons.lang</artifactId>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
 				<version>${commons.lang.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>com.springsource.org.apache.commons.beanutils</artifactId>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
 				<version>${commons.beanutils.version}</version>
 			</dependency>
 
 			<!-- Test dependency management -->
 			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+			</dependency>
+			<dependency>
 				<groupId>org.testng</groupId>
-				<artifactId>com.springsource.org.testng</artifactId>
+				<artifactId>testng</artifactId>
 				<version>${testng.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.mockito</groupId>
-				<artifactId>com.springsource.org.mockito</artifactId>
+				<artifactId>mockito-all</artifactId>
 				<version>${mockito.verison}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.beust</groupId>
-				<artifactId>com.springsource.jcommander</artifactId>
+				<artifactId>jcommander</artifactId>
 				<version>${jcommander.version}</version>
 			</dependency>
 		</dependencies>
@@ -202,34 +208,34 @@
 		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.testng</groupId>
-			<artifactId>com.springsource.org.testng</artifactId>
+			<artifactId>testng</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
-			<artifactId>com.springsource.org.mockito</artifactId>
+			<artifactId>mockito-all</artifactId>
 			<scope>test</scope>
 		</dependency>
 	
 		<!-- Test logging dependencies -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>com.springsource.slf4j.org.apache.commons.logging</artifactId>
+			<artifactId>jcl-over-slf4j</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>com.springsource.slf4j.api</artifactId>
+			<artifactId>slf4j-api</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>com.springsource.slf4j.simple</artifactId>
+			<artifactId>slf4j-simple</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.beust</groupId>
-			<artifactId>com.springsource.jcommander</artifactId>
+			<artifactId>jcommander</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
