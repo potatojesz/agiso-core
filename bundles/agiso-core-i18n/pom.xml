@@ -10,29 +10,27 @@
 		<groupId>org.agiso.core</groupId>
 		<artifactId>agiso-core-pom</artifactId>
 		<version><!--org.agiso.core-->0.0.1.BUILD-SNAPSHOT</version>
-		<relativePath>pom/agiso-core-pom/pom.xml</relativePath>
+		<relativePath>../../pom/agiso-core-pom/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>agiso-core-builder</artifactId>
-	<packaging>pom</packaging>
+	<artifactId>agiso-core-i18n</artifactId>
 
-	<name>AGISO Core Builder</name>
+	<name>AGISO Core I18n</name>
 	<inceptionYear>2013</inceptionYear>
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
 
-	<modules>
-		<module>pom/agiso-core-pom</module>
-		<module>bundles</module>
-	</modules>
+	<dependencies>
+	</dependencies>
 </project>

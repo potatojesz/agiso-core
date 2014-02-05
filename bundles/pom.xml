@@ -8,23 +8,35 @@
 
 	<parent>
 		<groupId>org.agiso.core</groupId>
-		<artifactId>org.agiso.core.pom</artifactId>
+		<artifactId>agiso-core-pom</artifactId>
 		<version><!--org.agiso.core-->0.0.1.BUILD-SNAPSHOT</version>
-		<relativePath>../pom/org.agiso.core.pom/pom.xml</relativePath>
+		<relativePath>../pom/agiso-core-pom/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>org.agiso.core.bundles</artifactId>
+	<artifactId>agiso-core-bundles</artifactId>
 	<packaging>pom</packaging>
 
 	<name>AGISO Core Bundles Builder</name>
 	<inceptionYear>2013</inceptionYear>
 
-	<modules>
-		<module>org.agiso.core.i18n</module>
-		<module>org.agiso.core.logging</module>
-		<module>org.agiso.core.lang</module>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
-		<module>org.agiso.core.beans</module>
-		<module>org.agiso.core.context</module>
+	<modules>
+		<module>agiso-core-i18n</module>
+		<module>agiso-core-logging</module>
+		<module>agiso-core-lang</module>
+
+		<module>agiso-core-beans</module>
+		<module>agiso-core-context</module>
 	</modules>
 </project>
