@@ -30,7 +30,7 @@ import java.lang.annotation.Target;
  * wielojęzykowych. Używana jest np. do opisu elementów wyliczeń <b>enum</b>
  * stanowiących sygnatury komunikatów lub wiadomości.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 @Documented

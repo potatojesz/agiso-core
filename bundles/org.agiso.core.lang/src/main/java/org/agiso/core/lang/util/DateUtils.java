@@ -1,7 +1,7 @@
 /* org.agiso.core.lang.util.DateUtils (2009-02-06)
- *
+ * 
  * DateUtils.java
- *
+ * 
  * Copyright 2009 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +31,7 @@ import java.util.TimeZone;
 /**
  * Klasa narzędziowa dostarczająca funkcjonalności związanych z datą i czasem.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public abstract class DateUtils {

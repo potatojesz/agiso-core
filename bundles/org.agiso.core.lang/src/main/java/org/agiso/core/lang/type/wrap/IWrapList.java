@@ -1,7 +1,7 @@
 /* org.agiso.core.lang.type.wrap.IWrapList (2010-07-02)
- *
+ * 
  * IWrapList.java
- *
+ * 
  * Copyright 2010 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Interfejs listy obiektów opakowujących.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public interface IWrapList<W extends IWrap<T>, T> extends List<W> {

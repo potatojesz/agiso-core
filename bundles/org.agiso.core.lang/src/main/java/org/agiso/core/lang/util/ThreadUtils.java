@@ -31,7 +31,7 @@ import org.agiso.core.lang.type.Parameter;
  *     <li>przechowywanie atrybutów w zasięgu wątku pod określnymi kluczami.</li>
  * </ul>
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public abstract class ThreadUtils {

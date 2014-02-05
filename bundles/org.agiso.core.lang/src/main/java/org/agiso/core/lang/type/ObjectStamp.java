@@ -1,7 +1,7 @@
 /* org.agiso.core.lang.type.ObjectStamp (2010-11-28)
- *
+ * 
  * ObjectStamp.java
- *
+ * 
  * Copyright 2010 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,7 +38,7 @@ import org.agiso.core.lang.util.DateUtils;
  * @param <T> Typ znacznikowanego obiektu
  * @param <V> Typ wartości znacznika (np. {@link Long} lub {@link String})
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public class ObjectStamp<T, V> {

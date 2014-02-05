@@ -1,7 +1,7 @@
 /* org.agiso.core.logging.slf4j.SLF4JLoggerFactory (2009-02-10)
- *
+ * 
  * SLF4JLoggerFactory.java
- *
+ * 
  * Copyright 2009 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ import org.slf4j.spi.LocationAwareLogger;
 /**
  * Fabryka pozwalająca na pozyskanie loggera SLF4J.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public class SLF4JLoggerFactory {

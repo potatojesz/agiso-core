@@ -29,7 +29,7 @@ import org.testng.annotations.Test;
  * http://www.javaworld.com/javaworld/jw-04-2005/jw-0404-testng.html?page=1
  * TODO: Zaimplementować test klasy ThreadUtils
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 @Test(singleThreaded = true)

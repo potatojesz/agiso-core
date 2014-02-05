@@ -30,7 +30,7 @@ import java.lang.annotation.Target;
  * podawanie pełnej nazwy pakietowej do innego obiektu (wyliczenia) opisanego
  * tą adnotacją.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 @Documented

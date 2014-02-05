@@ -1,7 +1,7 @@
 /* org.agiso.core.beans.factory.IBeanFactory (2009-02-12)
- *
+ * 
  * IBeanFactory.java
- *
+ * 
  * Copyright 2009 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ import org.agiso.core.beans.exception.BeanRetrievalException;
  * Interfejs dla fabryki obiektów wykorzystywanej do ich pobierania z kontekstu
  * aplikacji.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public interface IBeanFactory {

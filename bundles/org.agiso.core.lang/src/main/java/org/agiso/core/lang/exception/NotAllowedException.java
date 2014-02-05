@@ -24,7 +24,7 @@ package org.agiso.core.lang.exception;
  * publicznej metody nadklasy przez jej przeciążenie z wyrzuceniem tego
  * wyjątku).
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public class NotAllowedException extends BaseRuntimeException {

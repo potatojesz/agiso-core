@@ -1,7 +1,7 @@
 /* org.agiso.core.lang.util.ReflectUtils (2010-01-17)
- *
+ * 
  * ReflectUtils.java
- *
+ * 
  * Copyright 2010 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ import org.agiso.core.lang.exception.MethodInvocationException;
 /**
  * Klasa narzędziowa dostarczająca mechanizmów refleksji.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public abstract class ReflectUtils {
@@ -60,7 +60,7 @@ public abstract class ReflectUtils {
 	 * }.getCurrentMethod();
 	 * </pre>
 	 * 
-	 * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+	 * @author Karol Kopacz
 	 * @since 1.0
 	 */
 	public interface MethodHelper {

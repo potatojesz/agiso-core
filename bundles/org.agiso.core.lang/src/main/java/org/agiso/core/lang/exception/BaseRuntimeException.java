@@ -21,7 +21,7 @@ package org.agiso.core.lang.exception;
 /**
  * Klasa bazowa dla wszystkich wyjątków nieweryfikowalnych.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public class BaseRuntimeException extends RuntimeException implements IException {

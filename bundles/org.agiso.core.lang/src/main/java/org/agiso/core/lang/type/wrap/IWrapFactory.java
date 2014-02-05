@@ -1,7 +1,7 @@
 /* org.agiso.core.lang.type.wrap.IWrapFactory (2010-07-02)
- *
+ * 
  * IWrapFactory.java
- *
+ * 
  * Copyright 2010 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,7 @@ package org.agiso.core.lang.type.wrap;
 /**
  * Interfejs fabryki obiektów opakowujących.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public interface IWrapFactory<T> {

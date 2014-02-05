@@ -21,7 +21,7 @@ package org.agiso.core.lang.util;
 /**
  * Roszerzenie klasy narzędziowej {@link org.apache.commons.lang.StringUtils}.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public abstract class StringUtils extends org.apache.commons.lang.StringUtils {

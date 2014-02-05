@@ -24,7 +24,7 @@ import java.io.PrintWriter;
 /**
  * Interfejs dla wszystkich wyjątków czasu wykonania.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public interface IException {

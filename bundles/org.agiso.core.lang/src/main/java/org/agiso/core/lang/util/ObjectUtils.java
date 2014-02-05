@@ -42,7 +42,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Obiekty analizowane są za pomocą mechanizmu refleksji poprzez bezpośrednią
  * analizę pól klasy. Uwzglęniany jest stan pól prywatnych.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public abstract class ObjectUtils {

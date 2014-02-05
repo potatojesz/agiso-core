@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 /**
  * 
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  */
 public class NotImplementedExceptionITest {
 	@Test

@@ -21,7 +21,7 @@ package org.agiso.core.lang.exception;
 /**
  * Wyjątek wywołania metody (z wykorzystaniem mechanizmów refleksji).
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public class MethodInvocationException extends BaseRuntimeException {

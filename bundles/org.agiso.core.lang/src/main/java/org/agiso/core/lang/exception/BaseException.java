@@ -20,8 +20,8 @@ package org.agiso.core.lang.exception;
 
 /**
  * Klasa bazowa dla wszystkich wyjątków weryfikowalnych.
- *
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * 
+ * @author Karol Kopacz
  * @since 1.0
  */
 public abstract class BaseException extends Exception implements IException {

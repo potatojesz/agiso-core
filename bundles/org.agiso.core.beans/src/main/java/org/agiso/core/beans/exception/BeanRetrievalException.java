@@ -1,7 +1,7 @@
 /* org.agiso.core.beans.exception.BeanRetrievalException (2009-02-12)
- *
+ * 
  * BeanRetrievalException.java
- *
+ * 
  * Copyright 2009 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,7 @@ import org.agiso.core.lang.exception.BaseRuntimeException;
 /**
  * Wyjątek pozyskiwania obiektu z kontekstu aplikacji.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public class BeanRetrievalException extends BaseRuntimeException {

@@ -1,7 +1,7 @@
 /* org.agiso.core.logging.slf4j.SLF4JLogger (2009-02-10)
- *
+ * 
  * SLF4JLogger.java
- *
+ * 
  * Copyright 2009 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +29,7 @@ import org.apache.commons.lang.ArrayUtils;
  * Implementacja interfejsu {@link Logger} dostarczająca mechanizmów logowania
  * za pośrednictwem prostego loggera SLF4J.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 class SLF4JLogger<T, L extends org.slf4j.Logger, E extends I18nId>

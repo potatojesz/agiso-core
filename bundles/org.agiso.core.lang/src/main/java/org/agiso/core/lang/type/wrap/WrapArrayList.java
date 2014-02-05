@@ -1,7 +1,7 @@
 /* org.agiso.core.lang.type.wrap.WrapArrayList (2010-07-02)
- *
+ * 
  * WrapArrayList.java
- *
+ * 
  * Copyright 2010 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Implementacja listy obiektów opakowujących oparta o klasę {@link ArrayList}.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public class WrapArrayList<W extends IWrap<T>, T> extends ArrayList<W> implements IWrapList<W, T> {

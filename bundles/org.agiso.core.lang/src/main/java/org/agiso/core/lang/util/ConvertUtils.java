@@ -1,7 +1,7 @@
 /* org.agiso.core.lang.util.ConvertUtils (2007-07-16)
- *
+ * 
  * ConvertUtils.java
- *
+ * 
  * Copyright 2007 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,7 +33,7 @@ import java.util.Scanner;
 /**
  * 
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public abstract class ConvertUtils {

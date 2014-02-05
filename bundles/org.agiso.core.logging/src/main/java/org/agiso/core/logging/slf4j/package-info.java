@@ -20,7 +20,7 @@
 /**
  * 
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 package org.agiso.core.logging.slf4j;

@@ -30,7 +30,7 @@ import org.agiso.core.i18n.annotation.I18n;
  * Klasa narzędziowa dostarczająca funkcjonalności związanych z wielojęzykowością
  * łańcuchów znaków (komunikaty, wiadomości, etc...)
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public abstract class I18nUtils {

@@ -31,7 +31,7 @@ import org.agiso.core.lang.util.ObjectUtils;
  * Steruje generowaniem sumy haszującej obiektu przez metodę {@link
  * ObjectUtils#hashCodeBuilder(Object)}. Stosowana do pól obiektu.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 @Documented

@@ -1,7 +1,7 @@
 /* org.agiso.core.logging.slf4j.SLF4JCallerLocationAwareLogger.java (2009-02-10)
- *
+ * 
  * SLF4JCallerLocationAwareLogger.java.java
- *
+ * 
  * Copyright 2009 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +29,7 @@ import org.slf4j.spi.LocationAwareLogger;
  * tzn. pozwalającego na wyświetlanie poprawnych informacji o lokalizacji loga
  * (nazwa metody, nr linii, etc.).
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 class SLF4JCallerLocationAwareLogger<T, E extends I18nId> extends SLF4JLogger<T, LocationAwareLogger, E> {

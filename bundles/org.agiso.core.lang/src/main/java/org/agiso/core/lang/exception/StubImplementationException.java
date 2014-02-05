@@ -23,7 +23,7 @@ package org.agiso.core.lang.exception;
  * interfejsów. Takie metody albo są przeznaczone do przeciążenia w klasach
  * rozszerzających pieńki, albo wiadomo, że nie będą wywoływane.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public class StubImplementationException extends BaseRuntimeException {

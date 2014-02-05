@@ -31,7 +31,7 @@ import org.agiso.core.lang.util.ObjectUtils;
  * Steruje porównywaniem obiektów przez metodę {@link ObjectUtils
  * #equalsBuilder(Object, Object)}. Stosowana do pól obiektu.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 @Documented

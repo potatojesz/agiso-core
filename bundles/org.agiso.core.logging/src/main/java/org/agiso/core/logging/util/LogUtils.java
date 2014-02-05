@@ -1,7 +1,7 @@
 /* org.agiso.core.logging.util.LogUtils (2009-02-10)
- *
+ * 
  * LogUtils.java
- *
+ * 
  * Copyright 2009 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ import org.agiso.core.logging.slf4j.SLF4JLoggerFactory;
  * Klasa narzędziowa pozwalająca na pozyskiwanie loggera typu {@link Logger}
  * wykorzystywanego do wysyłania informacji do logów aplikacji.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public abstract class LogUtils {

@@ -31,7 +31,7 @@ import org.apache.log4j.spi.LoggingEvent;
 /**
  * Appender log4j loggera zapisujący logi do bazy danych.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public class DatabaseLoggerAppender extends BaseLoggerAppender {

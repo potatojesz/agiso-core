@@ -29,7 +29,7 @@ import org.testng.annotations.Test;
 /**
  * Testuje poprawność działania metod klasy narzędziowej {@link ObjectUtils}.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public class ObjectUtilsUTest {

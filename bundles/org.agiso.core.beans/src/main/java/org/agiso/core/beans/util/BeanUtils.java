@@ -1,7 +1,7 @@
 /* org.agiso.core.beans.util.BeanUtils (2009-02-12)
- *
+ * 
  * BeanUtils.java
- *
+ * 
  * Copyright 2009 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,7 +30,7 @@ import org.agiso.core.beans.factory.IBeanFactory;
  * IBeanFactory)}, za pomocą której wskazywana jest instancja interfejsu {@link
  * IBeanFactory} dostarczająca właściwych metod pobierających obiekty z kontekstu.
  * 
- * @author <a href="mailto:kkopacz@agiso.org">Karol Kopacz</a>
+ * @author Karol Kopacz
  * @since 1.0
  */
 public abstract class BeanUtils {
