@@ -42,9 +42,9 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:git@github.com:kkopacz/org.agiso.core.git</connection>
-		<developerConnection>scm:git:git@github.com:kkopacz/org.agiso.core.git</developerConnection>
-		<url>git@github.com:kkopacz/org.agiso.core.git</url>
+		<connection>scm:git:git@github.com:kkopacz/agiso-core.git</connection>
+		<developerConnection>scm:git:git@github.com:kkopacz/agiso-core.git</developerConnection>
+		<url>git@github.com:kkopacz/agiso-core.git</url>
 	</scm>
 
 	<!-- distributionManagement>

@@ -1,4 +1,4 @@
-org.agiso.core
-==============
+agiso-core
+==========
 
-Repozytorium projektu org.agiso.core
+Repozytorium projektu agiso-core
