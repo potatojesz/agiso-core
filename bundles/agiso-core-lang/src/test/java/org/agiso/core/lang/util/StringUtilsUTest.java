@@ -36,8 +36,8 @@ public class StringUtilsUTest {
 		Object o1 = null;
 		Object o2 = new Date();
 
-		assert "".equals(blankIfNull(o1));
-		assert o2.toString().equals(blankIfNull(o2));
+		assert "".equals(emptyIfNull(o1));
+		assert o2.toString().equals(emptyIfNull(o2));
 	}
 
 	@Test

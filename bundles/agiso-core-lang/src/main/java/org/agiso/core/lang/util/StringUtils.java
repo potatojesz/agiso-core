@@ -25,8 +25,23 @@ package org.agiso.core.lang.util;
  * @since 1.0
  */
 public abstract class StringUtils extends org.apache.commons.lang.StringUtils {
-	public static String blankIfNull(Object object) {
-		return (object == null)? "" : object.toString();
+	public static final String nullIfEmpty(String string) {
+		return isEmpty(string)? null : string;
+	}
+
+	public static final String nullIfBlank(String string) {
+		return isBlank(string)? null : string;
+	}
+
+	public static final String emptyIfNull(String string) {
+		return string == null? "" : string;
+	}
+	public static final String emptyIfNull(Object object) {
+		return object == null? "" : object.toString();
+	}
+
+	public static final String emptyIfBlank(String string) {
+		return isBlank(string)? "" : string;
 	}
 
 	public static String addPending(String s, char c, int length) {
