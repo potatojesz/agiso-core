@@ -18,7 +18,6 @@
  */
 package org.agiso.core.context;
 
-import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -28,7 +27,7 @@ import java.util.Map;
  * @author Karol Kopacz
  * @since 1.0
  */
-public interface ISystemContext extends Serializable {
+public interface ISystemContext {
 	public enum Scope {
 		FLASH,
 		REQUEST,

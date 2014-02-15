@@ -38,7 +38,6 @@ import org.agiso.core.logging.util.LogUtils;
  * @since 1.0
  */
 public class SystemContextBean implements ISystemContext {
-	private static final long serialVersionUID = 1L;
 	private static final transient Logger logger = LogUtils.getLogger(SystemContextBean.class);
 
 //	--------------------------------------------------------------------------
