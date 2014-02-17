@@ -24,6 +24,7 @@ import org.testng.annotations.Test;
  * 
  * 
  * @author Karol Kopacz
+ * @since 1.0
  */
 public class StubImplementationExceptionITest {
 	@Test

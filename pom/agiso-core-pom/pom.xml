@@ -8,7 +8,7 @@
 
 	<groupId>org.agiso.core</groupId>
 	<artifactId>agiso-core-pom</artifactId>
-	<version><!--org.agiso.core-->0.0.1.BUILD-SNAPSHOT</version>
+	<version><!--org.agiso.core-->0.0.1.RELEASE-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>AGISO Core POM</name>
@@ -294,11 +294,11 @@
 		<profile>
 			<id>release-sign-artifacts</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
-				<!-- property>
+				<!-- activeByDefault>true</activeByDefault -->
+				<property>
 					<name>performRelease</name>
 					<value>true</value>
-				</property -->
+				</property>
 			</activation>
 			<build>
 				<plugins>
