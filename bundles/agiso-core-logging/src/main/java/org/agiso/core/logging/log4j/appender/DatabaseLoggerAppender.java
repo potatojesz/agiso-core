@@ -122,6 +122,10 @@ public class DatabaseLoggerAppender extends BaseLoggerAppender {
 		this.propertySqlQuery = propertySqlQuery;
 	}
 
+	protected PreparedStatement getStmt(LoggingEvent event) {
+		return stmt;
+	}
+
 //	--------------------------------------------------------------------------
 	@Override
 	public void activateOptions() {
@@ -241,6 +245,7 @@ public class DatabaseLoggerAppender extends BaseLoggerAppender {
 
 	@Override
 	protected synchronized void doLog(LoggingEvent event) {
+		PreparedStatement stmt = getStmt(event);
 		if(stmt != null) try {
 			fillStatement(stmt, event);
 
