@@ -163,7 +163,7 @@ public class DatabaseLoggerAppender extends BaseLoggerAppender {
 
 				Class.forName(driver).newInstance();
 				conn = DriverManager.getConnection(url, username, password);
-				stmt = conn.prepareStatement(sqlQuery);
+				stmt = prepareStatement(conn);
 
 				LogLog.debug("Appender [" + this.name + "] successfully connected to database.");
 			} catch(Exception e) {
@@ -183,7 +183,7 @@ public class DatabaseLoggerAppender extends BaseLoggerAppender {
 					try {
 						DataSource dataSource = BeanUtils.getBean(dataSourceBeanName, DataSource.class, dataSourceBeanWaitTime);
 						conn = dataSource.getConnection();
-						stmt = conn.prepareStatement(sqlQuery);
+						stmt = prepareStatement(conn);
 
 						LogLog.debug("Appender [" + name + "] successfully connected to spring data source: " + dataSourceBeanName);
 					} catch(Exception e) {
@@ -253,6 +253,10 @@ public class DatabaseLoggerAppender extends BaseLoggerAppender {
 		} catch(SQLException e) {
 			errorHandler.error("Failed to flush log", e, ErrorCode.FLUSH_FAILURE);
 		}
+	}
+
+	protected final PreparedStatement prepareStatement(Connection conn) throws SQLException {
+		return conn.prepareStatement(sqlQuery);
 	}
 
 	/**

@@ -248,7 +248,11 @@ public abstract class ObjectUtils {
 	 */
 	@SuppressWarnings("unchecked")
 	public static final boolean compareChecker(Comparable<?> object1, Comparable<?> object2) {
-		return null == object1? null == object2 : 0 == ((Comparable<Object>)object1).compareTo((Comparable<Object>)object2);
+		if(null == object1 || null == object2) {
+			return object1 == object2;
+		} else {
+			return 0 == ((Comparable<Object>)object1).compareTo((Comparable<Object>)object2);
+		}
 	}
 
 	/**
