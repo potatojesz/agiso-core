@@ -34,7 +34,7 @@ public class WrapArrayList<W extends IWrap<T>, T> extends ArrayList<W> implement
 	private IWrapFactory<T> wrapFactory;
 
 //	--------------------------------------------------------------------------
-	public WrapArrayList(Collection<T> collection, IWrapFactory<T> wrapFactory) {
+	public WrapArrayList(Collection<? extends T> collection, IWrapFactory<T> wrapFactory) {
 		super(collection.size());
 
 		this.wrapFactory = wrapFactory;
