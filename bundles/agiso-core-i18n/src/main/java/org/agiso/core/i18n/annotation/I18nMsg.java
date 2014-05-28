@@ -36,10 +36,6 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RUNTIME)
 @Target({TYPE, METHOD, FIELD})
-public @interface I18n {
-	public String value() default "";
-
-	public String def() default "";
-
-	public I18nMsg[] msgs() default {};
+public @interface I18nMsg {
+	public String value();
 }

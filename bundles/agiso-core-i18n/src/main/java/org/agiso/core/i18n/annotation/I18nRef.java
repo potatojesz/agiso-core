@@ -36,6 +36,6 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RUNTIME)
 @Target({TYPE, METHOD, FIELD})
-/* public */ @interface I18nRef {
+public @interface I18nRef {
 	public String value();
 }
