@@ -18,6 +18,8 @@
  */
 package org.agiso.core.lang.util;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,6 +32,10 @@ import java.util.Set;
 public final class ApiUtils {
 	public static <T, S extends Set<T>> FlowSet<T, S> flowSet(S set) {
 		return new FlowSet<T, S>(set);
+	}
+
+	public static <T, L extends List<T>> FlowList<T, L> flowList(L list) {
+		return new FlowList<T, L>(list);
 	}
 
 	public static <K, V, M extends Map<K, V>> FlowMap<K, V, M> flowMap(M map) {
@@ -49,8 +55,35 @@ public final class ApiUtils {
 			return this;
 		}
 
+		public FlowSet<T, S> addAll(Collection<? extends T> c) {
+			set.addAll(c);
+			return this;
+		}
+
 		public S getSet() {
 			return set;
+		}
+	}
+
+	public static final class FlowList<T, L extends List<T>> {
+		private final L list;
+
+		public FlowList(L list) {
+			this.list = list;
+		}
+
+		public FlowList<T, L> add(T e) {
+			list.add(e);
+			return this;
+		}
+
+		public FlowList<T, L> addAll(Collection<? extends T> c) {
+			list.addAll(c);
+			return this;
+		}
+
+		public L getList() {
+			return list;
 		}
 	}
 
@@ -63,6 +96,11 @@ public final class ApiUtils {
 
 		public FlowMap<K, V, M> put(K k, V v) {
 			map.put(k, v);
+			return this;
+		}
+
+		public FlowMap<K, V, M> putAll(Map<? extends K, ? extends V> m) {
+			map.putAll(m);
 			return this;
 		}
 
