@@ -18,6 +18,15 @@
  */
 package org.agiso.core.i18n.util;
 
+import static org.agiso.core.i18n.util.I18nUtils.*;
+
+import org.agiso.core.i18n.provider.AnnotationMessageProvider;
+import org.agiso.core.i18n.util.beans.BeanImplementation1;
+import org.agiso.core.i18n.util.beans.BeanImplementation2;
+import org.agiso.core.i18n.util.beans.IBeanInterface;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 /**
  * 
  * 
@@ -25,5 +34,48 @@ package org.agiso.core.i18n.util;
  * @since 1.0
  */
 public class I18nUtilsUTest {
+	@BeforeClass
+	public void beforeClass() throws Exception {
+		setMessageProvider(new AnnotationMessageProvider("org.agiso.core.i18n"));
+	}
 
+	@Test
+	public void testField1() throws Exception {
+		assert "org.agiso.core.i18n.util.beans.IBeanInterface.field1"
+				.equals(getCode(IBeanInterface.class, "field1"));
+		assert "Interface field1 label"
+				.equals(getMessage(IBeanInterface.class, "field1"));
+
+		assert "org.agiso.core.i18n.util.beans.BeanImplementation1.field1"
+				.equals(getCode(BeanImplementation1.class, "field1"));
+		assert "BeanImplementation1 field1 label"
+				.equals(getMessage(BeanImplementation1.class, "field1"));
+
+		assert "org.agiso.core.i18n.util.beans.BeanImplementation1.field1"
+				.equals(getCode(BeanImplementation2.class, "field1"));
+		assert "BeanImplementation1 field1 label"
+				.equals(getMessage(BeanImplementation2.class, "field1"));
+	}
+
+	@Test
+	public void testField2() throws Exception {
+		assert "org.agiso.core.i18n.util.beans.IBeanInterface.field2"
+				.equals(getCode(IBeanInterface.class, "field2"));
+		assert "Interface field2 label"
+				.equals(getMessage(IBeanInterface.class, "field2"));
+
+		assert "org.agiso.core.i18n.util.beans.BeanImplementation1.field2"
+				.equals(getCode(BeanImplementation1.class, "field2"));
+		assert "org.agiso.core.i18n.util.beans.IBeanInterface.field2"
+				.equals(findCode(BeanImplementation1.class, "field2"));
+//		assert "Interface field2 label"
+//				.equals(getMessage(BeanImplementation1.class, "field2"));
+
+		assert "org.agiso.core.i18n.util.beans.BeanImplementation2.field2"
+				.equals(getCode(BeanImplementation2.class, "field2"));
+		assert "org.agiso.core.i18n.util.beans.IBeanInterface.field2"
+				.equals(findCode(BeanImplementation2.class, "field2"));
+//		assert "Interface field2 label"
+//				.equals(getMessage(BeanImplementation2.class, "field2"));
+	}
 }
