@@ -224,24 +224,32 @@ public abstract class I18nUtils {
 		return name;
 	}
 
-	private static String findGetterFieldCode(Class<?> c, String field, boolean checkInterfaces)
+	private static String findGetterFieldCode(Class<?> c, String field, boolean reflectionCheck)
 			throws IntrospectionException {
 		for(PropertyDescriptor pd : Introspector.getBeanInfo(c).getPropertyDescriptors()) {
 			if(pd.getName().equals(field)) {
 				final Method g = pd.getReadMethod();
 				if(g != null) {
+					// Jeśli jest adnotacja I18n na metodzie odczytującej pole, to pobieranie
+					// pobieranie jej klucza (określonego przez 'value') lub klucza domyślnego:
 					if(g.isAnnotationPresent(I18n.class)) {
 						if(g.getAnnotation(I18n.class).value().length() > 0) {
 							return g.getAnnotation(I18n.class).value();
 						} else {
 							return g.getDeclaringClass().getName() + CODE_SEPARATOR + field;
 						}
-					} else if(checkInterfaces) {
-						for(Class<?> i : g.getDeclaringClass().getInterfaces()) {
+					} else if(reflectionCheck) {
+						// Pole nie jest opisane adnotacją I18n. Jeśli do wyszukania mają być
+						// wykorzystane mechanizmy, to sprawdzamy interfejsy i nadklasę:
+						for(Class<?> i : c.getInterfaces()) {
 							String i18nCode = findGetterFieldCode(i, field, false);
 							if(i18nCode != null) {
 								return i18nCode;
 							}
+						}
+						Class<?> s = c.getSuperclass();
+						if(s != null) {
+							return findGetterFieldCode(s, field, true);
 						}
 					}
 				}

@@ -30,6 +30,11 @@ public abstract class BeanImplementation2 extends BeanImplementation1 {
 	private String field3;
 
 //	--------------------------------------------------------------------------
+	@Override
+	public String getField2() {
+		return super.getField2();
+	}
+
 	@I18n(def = "BeanImplementation2 field3 label")
 	public String getField3() {
 		return field3;
