@@ -266,10 +266,10 @@ class SimpleMessageProvider implements IMessageProvider {
 		} else {
 			StringBuilder builder = new StringBuilder();
 			builder.append(code).append("[0: ");
-			builder.append(args[0].toString());
+			builder.append(String.valueOf(args[0]));
 			for(int index = 1; index < args.length; index++) {
 				builder.append(", ").append(index).append(": ");
-				builder.append(args[index].toString());
+				builder.append(String.valueOf(args[index]));
 			}
 			builder.append("]");
 			return builder.toString();
