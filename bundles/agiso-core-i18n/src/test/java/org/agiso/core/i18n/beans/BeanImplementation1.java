@@ -1,6 +1,6 @@
-/* org.agiso.core.i18n.util.beans.BeanImplementation2 (28 gru 2014)
+/* org.agiso.core.i18n.beans.BeanImplementation1 (4 gru 2014)
  * 
- * BeanImplementation2.java
+ * BeanImplementation1.java
  * 
  * Copyright 2014 agiso.org.
  * 
@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agiso.core.i18n.util.beans;
+package org.agiso.core.i18n.beans;
 
 import org.agiso.core.i18n.annotation.I18n;
 
@@ -26,20 +26,23 @@ import org.agiso.core.i18n.annotation.I18n;
  * @author Karol Kopacz
  * @since 1.0
  */
-public abstract class BeanImplementation2 extends BeanImplementation1 {
-	private String field3;
+public abstract class BeanImplementation1 implements IBeanInterface {
+	private String field1;
+	private String field2;
 
 //	--------------------------------------------------------------------------
-	@Override
-	public String getField2() {
-		return super.getField2();
+	@I18n(def = "BeanImplementation1 field1 label")
+	public String getField1() {
+		return field1;
+	}
+	public void setField1(String field1) {
+		this.field1 = field1;
 	}
 
-	@I18n(def = "BeanImplementation2 field3 label")
-	public String getField3() {
-		return field3;
+	public String getField2() {
+		return field2;
 	}
-	public void setField3(String field3) {
-		this.field3 = field3;
+	public void setField2(String field2) {
+		this.field2 = field2;
 	}
 }

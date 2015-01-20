@@ -20,13 +20,14 @@ package org.agiso.core.i18n.provider;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.text.MessageFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
 import org.agiso.core.i18n.annotation.I18n;
 import org.agiso.core.i18n.util.I18nUtils;
-import org.agiso.core.i18n.util.I18nUtils.IMessageProvider;
 import org.reflections.Reflections;
 import org.reflections.scanners.FieldAnnotationsScanner;
 import org.reflections.scanners.MethodAnnotationsScanner;
@@ -37,7 +38,7 @@ import org.reflections.scanners.MethodAnnotationsScanner;
  * @author Karol Kopacz
  * @since 1.0
  */
-public class AnnotationMessageProvider implements IMessageProvider {
+public class AnnotationMessageProvider extends AbstractMessageProvider {
 	private Map<String, String> messages = new HashMap<String, String>();
 
 //	--------------------------------------------------------------------------
@@ -63,7 +64,15 @@ public class AnnotationMessageProvider implements IMessageProvider {
 
 //	--------------------------------------------------------------------------
 	@Override
-	public String getMessage(String code, Object... args) {
+	protected MessageFormat resolveMessageFormat(String code, Locale locale) {
+		String msg = getStringOrNull(messages, code);
+		if(msg != null) {
+			return createMessageFormat(msg, locale);
+		}
+		return null;
+	}
+
+	private String getStringOrNull(Map<String, String> messages, String code) {
 		return messages.get(code);
 	}
 }

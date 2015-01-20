@@ -1,8 +1,8 @@
-/* org.agiso.core.i18n.util.beans.BeanImplementation1 (4 gru 2014)
+/* org.agiso.core.i18n.beans.EnumMessages (20-01-2015)
  * 
- * BeanImplementation1.java
+ * EnumMessages.java
  * 
- * Copyright 2014 agiso.org.
+ * Copyright 2015 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agiso.core.i18n.util.beans;
+package org.agiso.core.i18n.beans;
 
 import org.agiso.core.i18n.annotation.I18n;
 
@@ -26,23 +26,10 @@ import org.agiso.core.i18n.annotation.I18n;
  * @author Karol Kopacz
  * @since 1.0
  */
-public abstract class BeanImplementation1 implements IBeanInterface {
-	private String field1;
-	private String field2;
+public enum EnumMessages {
+	@I18n(def = "Enum message 1")
+	M1,
 
-//	--------------------------------------------------------------------------
-	@I18n(def = "BeanImplementation1 field1 label")
-	public String getField1() {
-		return field1;
-	}
-	public void setField1(String field1) {
-		this.field1 = field1;
-	}
-
-	public String getField2() {
-		return field2;
-	}
-	public void setField2(String field2) {
-		this.field2 = field2;
-	}
+	@I18n(def = "Enum message 2 with param {0}")
+	M2
 }

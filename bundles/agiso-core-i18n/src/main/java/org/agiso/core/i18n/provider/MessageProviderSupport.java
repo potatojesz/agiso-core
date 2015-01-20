@@ -1,8 +1,8 @@
-/* org.agiso.core.i18n.util.beans.IBeanInterface (4 gru 2014)
+/* org.agiso.core.i18n.provider.MessageProviderSupport (09-01-2015)
  * 
- * IBeanInterface.java
+ * MessageProviderSupport.java
  * 
- * Copyright 2014 agiso.org.
+ * Copyright 2015 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agiso.core.i18n.util.beans;
+package org.agiso.core.i18n.provider;
 
-import org.agiso.core.i18n.annotation.I18n;
+import java.text.MessageFormat;
+import java.util.Locale;
 
 /**
  * 
@@ -26,16 +27,8 @@ import org.agiso.core.i18n.annotation.I18n;
  * @author Karol Kopacz
  * @since 1.0
  */
-public interface IBeanInterface {
-	@I18n(def = "Interface field1 label")
-	public String getField1();
-
-	@I18n(def = "Interface field2 label")
-	public String getField2();
-
-	@I18n(def = "Interface field3 label")
-	public String getField3();
-
-	@I18n(def = "Interface field4 label")
-	public String getField4();
+public class MessageProviderSupport {
+	protected MessageFormat createMessageFormat(String message, Locale locale) {
+		return new MessageFormat((message != null ? message : ""), locale);
+	}
 }
