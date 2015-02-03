@@ -99,7 +99,7 @@ public class I18nUtilsUTest {
 
 		assert "org.agiso.core.i18n.beans.BeanImplementation1.field3"
 				.equals(getCode(BeanImplementation1.class, "field3"));
-		assert "org.agiso.core.i18n.beans.BeanImplementation1.field3"
+		assert "org.agiso.core.i18n.beans.IBeanInterface.field3"
 				.equals(findCode(BeanImplementation1.class, "field3"));
 		assert "org.agiso.core.i18n.beans.BeanImplementation1.field3"
 				.equals(getMessage(BeanImplementation1.class, "field3"));
@@ -123,7 +123,7 @@ public class I18nUtilsUTest {
 
 		assert "org.agiso.core.i18n.beans.BeanImplementation1.field4"
 				.equals(getCode(BeanImplementation1.class, "field4"));
-		assert "org.agiso.core.i18n.beans.BeanImplementation1.field4"
+		assert "org.agiso.core.i18n.beans.IBeanInterface.field4"
 				.equals(findCode(BeanImplementation1.class, "field4"));
 		assert "org.agiso.core.i18n.beans.BeanImplementation1.field4"
 				.equals(getMessage(BeanImplementation1.class, "field4"));

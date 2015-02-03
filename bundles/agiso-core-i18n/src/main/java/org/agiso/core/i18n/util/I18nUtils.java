@@ -255,6 +255,15 @@ public abstract class I18nUtils {
 				}
 			}
 		}
+		if(reflectionCheck) {
+			for(Class<?> i : c.getInterfaces()) {
+				String i18nCode = findGetterFieldCode(i, field, false);
+				if(i18nCode != null) {
+					return i18nCode;
+				}
+			}
+		}
+
 		return null;
 	}
 }
