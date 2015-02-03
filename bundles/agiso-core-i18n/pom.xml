@@ -37,7 +37,7 @@
 		<dependency>
 			<groupId>org.reflections</groupId>
 			<artifactId>reflections</artifactId>
-			<version>0.9.5</version>
+			<version>0.9.9</version>
 			<scope>compile</scope>
 			<optional>true</optional>
 			<exclusions>
@@ -50,14 +50,14 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>r08</version>
+			<version>15.0</version>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>javassist</groupId>
+			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
-			<version>3.12.1.GA</version>
+			<version>3.18.2-GA</version>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
