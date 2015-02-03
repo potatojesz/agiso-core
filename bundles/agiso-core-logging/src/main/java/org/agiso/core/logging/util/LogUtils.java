@@ -30,6 +30,19 @@ import org.agiso.core.logging.slf4j.SLF4JLoggerFactory;
  */
 public abstract class LogUtils {
 	/**
+	 * Zwraca logger o określonej nazwie będący implementacją interfejsu
+	 * {@link Logger}.
+	 * 
+	 * @param <T> Parametr typu klasy loggera.
+	 * @param name Nazwa zwracanego logger'a.
+	 * @return Logger o wskazanej nazwie.
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T, L extends LoggerInformer> L getLogger(String name) {
+		return (L)SLF4JLoggerFactory.getLogger(name);
+	}
+
+	/**
 	 * Zwraca logger dla określonej klasy będący implementacją interfejsu
 	 * {@link Logger}.
 	 * 

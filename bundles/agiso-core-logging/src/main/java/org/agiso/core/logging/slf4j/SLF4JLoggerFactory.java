@@ -30,6 +30,18 @@ import org.slf4j.spi.LocationAwareLogger;
  */
 public class SLF4JLoggerFactory {
 	/**
+	 * Pobiera loggera SLF4J o określonej nazwie.
+	 */
+	public static <T, E extends I18nId> SLF4JLogger<?, ?, E> getLogger(String name) {
+		org.slf4j.Logger logger = LoggerFactory.getLogger(name);
+		if(logger instanceof LocationAwareLogger) {
+			return new SLF4JLocationAwareLogger<T, E>((LocationAwareLogger)logger);
+		} else {
+			return new SLF4JLogger<T, org.slf4j.Logger, E>(logger);
+		}
+	}
+
+	/**
 	 * Pobiera loggera SLF4J dla określonej klasy.
 	 */
 	public static <T, E extends I18nId> SLF4JLogger<T, ?, E> getLogger(Class<T> clazz) {
