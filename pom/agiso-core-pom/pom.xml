@@ -296,7 +296,7 @@
 		<profile>
 			<id>release-sign-artifacts</id>
 			<activation>
-				<!-- activeByDefault>true</activeByDefault -->
+				<activeByDefault>true</activeByDefault>
 				<property>
 					<name>performRelease</name>
 					<value>true</value>
