@@ -20,7 +20,6 @@ package org.agiso.core.i18n.provider;
 
 import java.util.ResourceBundle;
 
-import org.agiso.core.i18n.util.I18nUtils.IMessageProvider;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

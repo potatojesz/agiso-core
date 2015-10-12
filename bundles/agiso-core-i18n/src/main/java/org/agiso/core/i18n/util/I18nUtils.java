@@ -43,17 +43,16 @@ public abstract class I18nUtils {
 	}
 
 	/**
-	 * Interfejs dostarczyciela rozwinięć kodów komunikatów na komunikaty.
+	 * @deprecated Należy używać interfejsu {@link org.agiso.core.i18n.provider.IMessageProvider}
 	 */
-	public interface IMessageProvider {
-		public String getMessage(String code, Object... args);
+	public interface IMessageProvider extends org.agiso.core.i18n.provider.IMessageProvider {
 	}
 
 //	--------------------------------------------------------------------------
 //	Obsługa MessageProvider'a
 //	--------------------------------------------------------------------------
-	private static IMessageProvider messageProvider;
-	private static final IMessageProvider internalMessageProvider =
+	private static org.agiso.core.i18n.provider.IMessageProvider messageProvider;
+	private static final org.agiso.core.i18n.provider.IMessageProvider internalMessageProvider =
 			new SimpleMessageProvider();
 
 	static {
@@ -68,7 +67,7 @@ public abstract class I18nUtils {
 	 * 
 	 * @return the messageFactory
 	 */
-	public static IMessageProvider getMessageProvider() {
+	public static org.agiso.core.i18n.provider.IMessageProvider getMessageProvider() {
 		if(messageProvider == internalMessageProvider) {
 			return null;
 		} else {
@@ -84,7 +83,7 @@ public abstract class I18nUtils {
 	 * 
 	 * @param provider Dostarczyciel lokalizacji wiadomości.
 	 */
-	public static void setMessageProvider(IMessageProvider provider) {
+	public static void setMessageProvider(org.agiso.core.i18n.provider.IMessageProvider provider) {
 		if(provider != null) {
 			messageProvider = provider;
 		} else {

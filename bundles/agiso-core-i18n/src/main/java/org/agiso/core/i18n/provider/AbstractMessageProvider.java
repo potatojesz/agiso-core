@@ -21,8 +21,6 @@ package org.agiso.core.i18n.provider;
 import java.text.MessageFormat;
 import java.util.Locale;
 
-import org.agiso.core.i18n.util.I18nUtils.IMessageProvider;
-
 /**
  * 
  * 
