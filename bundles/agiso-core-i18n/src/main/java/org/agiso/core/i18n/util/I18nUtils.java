@@ -23,9 +23,10 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Locale;
 
 import org.agiso.core.i18n.annotation.I18n;
-import org.agiso.core.i18n.util.I18nUtils.IMessageProvider;
+import org.agiso.core.i18n.provider.IMessageProvider;
 
 /**
  * Klasa narzędziowa dostarczająca funkcjonalności związanych z wielojęzykowością
@@ -42,40 +43,34 @@ public abstract class I18nUtils {
 	public interface I18nId {
 	}
 
-	/**
-	 * @deprecated Należy używać interfejsu {@link org.agiso.core.i18n.provider.IMessageProvider}
-	 */
-	public interface IMessageProvider extends org.agiso.core.i18n.provider.IMessageProvider {
-	}
-
 //	--------------------------------------------------------------------------
 //	Obsługa MessageProvider'a
 //	--------------------------------------------------------------------------
-	private static org.agiso.core.i18n.provider.IMessageProvider messageProvider;
-	private static final org.agiso.core.i18n.provider.IMessageProvider internalMessageProvider =
-			new SimpleMessageProvider();
+	private static IMessageProvider[] messageProviders;
+	private static final IMessageProvider[] internalMessageProviders =
+			new IMessageProvider[] {
+				new SimpleMessageProvider()
+			};
 
 	static {
-		messageProvider = internalMessageProvider;
+		messageProviders = internalMessageProviders;
 	}
 
 //	--------------------------------------------------------------------------
 	/**
-	 * Zwraca wykorzystywanego przez klasę narzędziową dostarczyciela wiadomości,
-	 * lub <code>null</code> jeśli nie był on ustawiony i jest wykorzystywany
-	 * mechanizm wbudowany.
-	 * 
-	 * @return the messageFactory
+	 * Zwraca tablicę dostarczycieli wiadomości wykorzystywanych przez klasę
+	 * narzędziową, lub <code>null</code> jeśli dostarczyciele nie byli ustawieni
+	 * i jest wykorzystywany mechanizm wbudowany.
 	 */
-	public static org.agiso.core.i18n.provider.IMessageProvider getMessageProvider() {
-		if(messageProvider == internalMessageProvider) {
+	public static IMessageProvider[] getMessageProviders() {
+		if(messageProviders == internalMessageProviders) {
 			return null;
 		} else {
-			return messageProvider;
+			return messageProviders;
 		}
 	}
 	/**
-	 * Ustawia dostarczyciela wiadomości wykorzystywanego przez klasę narzędziową.
+	 * Ustawia dostarczycieli wiadomości wykorzystywanych przez klasę narzędziową.
 	 * Jeśli metoda nie zostanie wywołana, zwracane wiadomości będą generowane
 	 * zgodnie z mechanizmem wbudowanym (w oparciu o przekazane do wywołań kody i
 	 * parametry wiadomości).<br/>
@@ -83,11 +78,17 @@ public abstract class I18nUtils {
 	 * 
 	 * @param provider Dostarczyciel lokalizacji wiadomości.
 	 */
-	public static void setMessageProvider(org.agiso.core.i18n.provider.IMessageProvider provider) {
-		if(provider != null) {
-			messageProvider = provider;
+	public static void setMessageProvider(IMessageProvider provider) {
+		setMessageProviders(provider);
+	}
+	public static void setMessageProviders(IMessageProvider... providers) {
+		// Jeśli tablica dostarczycieli jest pusta bądź zawiera tylko jeden
+		// element o wartości 'null', to przywracamy mechanizm wbudowany:
+		if(providers == null || providers.length == 0 || (
+				providers.length == 1 && providers[0] == null)) {
+			messageProviders = internalMessageProviders;
 		} else {
-			messageProvider = internalMessageProvider;
+			messageProviders = providers;
 		}
 	}
 
@@ -95,28 +96,54 @@ public abstract class I18nUtils {
 //	Pobieranie tłumaczeń na podstawie kodów, wyliczeń, klas, metod i pól
 //	--------------------------------------------------------------------------
 	public static String getMessage(String code, Object... args) {
-		return messageProvider.getMessage(code, args);
+		return getMessage(Locale.getDefault(), code, args);
+	}
+	public static String getMessage(Locale locale, String code, Object... args) {
+		String message = null;
+		for(IMessageProvider messageProvider : messageProviders) {
+			message = messageProvider.getMessageIfExists(locale, code, args);
+			if(message != null) {
+				break;
+			}
+		}
+		return message;
 	}
 
 	public static String getMessage(Enum<?> e, Object... args) {
 		return getMessage(getCode(e), args);
 	}
+	public static String getMessage(Locale locale, Enum<?> e, Object... args) {
+		return getMessage(locale, getCode(e), args);
+	}
 
 	public static String getMessage(Class<?> c, Object... args) {
 		return getMessage(getCode(c), args);
+	}
+	public static String getMessage(Locale locale, Class<?> c, Object... args) {
+		return getMessage(locale, getCode(c), args);
 	}
 
 	public static String getMessage(Method m, Object... args) {
 		return getMessage(getCode(m), args);
 	}
+	public static String getMessage(Locale locale, Method m, Object... args) {
+		return getMessage(locale, getCode(m), args);
+	}
 
 	public static String getMessage(Field f, Object... args) {
 		return getMessage(getCode(f), args);
+	}
+	public static String getMessage(Locale locale, Field f, Object... args) {
+		return getMessage(locale, getCode(f), args);
 	}
 
 	public static String getMessage(Class<?> c, String field, Object... args)
 			throws IntrospectionException {
 		return getMessage(getCode(c, field), args);
+	}
+	public static String getMessage(Locale locale, Class<?> c, String field, Object... args)
+			throws IntrospectionException {
+		return getMessage(locale, getCode(c, field), args);
 	}
 
 //	--------------------------------------------------------------------------
@@ -277,8 +304,25 @@ public abstract class I18nUtils {
 class SimpleMessageProvider implements IMessageProvider {
 	@Override
 	public String getMessage(String code, Object... args) {
+		return getMessage(Locale.getDefault(), code, args);
+	}
+	@Override
+	public String getMessage(Locale locale, String code, Object... args) {
+		return getMessageIfExists(locale, code, args);
+	}
+
+	@Override
+	public String getMessageIfExists(String code, Object... args) {
+		return getMessageIfExists(Locale.getDefault(), code, args);
+	}
+	@Override
+	public String getMessageIfExists(Locale locale, String code, Object... args) {
+		if(locale == null) {
+			locale = Locale.getDefault();
+		}
+
 		if(args == null || args.length == 0) {
-			return code + "[]";
+			return locale.toLanguageTag() + " " + code + "[]";
 		} else {
 			StringBuilder builder = new StringBuilder();
 			builder.append(code).append("[0: ");

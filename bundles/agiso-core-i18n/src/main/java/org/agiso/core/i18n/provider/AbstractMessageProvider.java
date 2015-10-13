@@ -28,22 +28,73 @@ import java.util.Locale;
  * @since 1.0
  */
 public abstract class AbstractMessageProvider extends MessageProviderSupport implements IMessageProvider {
+	private boolean useCodeAsDefaultMessage = true;
+
+//	--------------------------------------------------------------------------
+	public void setUseCodeAsDefaultMessage(boolean useCodeAsDefaultMessage) {
+		this.useCodeAsDefaultMessage = useCodeAsDefaultMessage;
+	}
+	protected boolean isUseCodeAsDefaultMessage() {
+		return this.useCodeAsDefaultMessage;
+	}
+
+//	--------------------------------------------------------------------------
+	@Override
 	public String getMessage(String code, Object... args) {
+		return getMessage(Locale.getDefault(), code, args);
+	}
+	@Override
+	public String getMessage(Locale locale, String code, Object... args) {
+		final String msg = getMessageIfExists(locale, code, args);
+		if(msg != null) {
+			return msg;
+		}
+		throw new RuntimeException("Message code '" + code + "' not found");
+	}
+
+	@Override
+	public String getMessageIfExists(String code, Object... args) {
+		return getMessageIfExists(Locale.getDefault(), code, args);
+	}
+	@Override
+	public String getMessageIfExists(Locale locale, String code, Object... args) {
+		final String msg = getMessageInternal(locale, code, args);
+		if(msg != null) {
+			return msg;
+		}
+		final String def = getDefaultMessage(code);
+		if(def != null) {
+			return def;
+		}
+		return null;
+	}
+
+//	--------------------------------------------------------------------------
+	protected String getMessageInternal(Locale locale, String code, Object[] args) {
 		if(code == null) {
 			return null;
 		}
 
-		Locale locale = Locale.getDefault();
+		if(locale == null) {
+			locale = Locale.getDefault();
+		}
 
-		MessageFormat messageFormat = resolveMessageFormat(code, locale);
+		final MessageFormat messageFormat = resolveMessageFormat(locale, code);
 		if(messageFormat != null) {
 			synchronized(messageFormat) {
 				return messageFormat.format(args);
 			}
 		}
 
-		return code;
+		return null;
 	}
 
-	protected abstract MessageFormat resolveMessageFormat(String code, Locale locale);
+	protected String getDefaultMessage(String code) {
+		if(isUseCodeAsDefaultMessage()) {
+			return code;
+		}
+		return null;
+	}
+
+	protected abstract MessageFormat resolveMessageFormat(Locale locale, String code);
 }

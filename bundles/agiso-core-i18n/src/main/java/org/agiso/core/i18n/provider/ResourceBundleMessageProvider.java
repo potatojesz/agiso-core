@@ -38,7 +38,7 @@ public class ResourceBundleMessageProvider extends AbstractMessageProvider {
 
 //	--------------------------------------------------------------------------
 	@Override
-	protected MessageFormat resolveMessageFormat(String code, Locale locale) {
+	protected MessageFormat resolveMessageFormat(Locale locale, String code) {
 		String msg = getStringOrNull(resourceBundle, code);
 		if(msg != null) {
 			return createMessageFormat(msg, locale);

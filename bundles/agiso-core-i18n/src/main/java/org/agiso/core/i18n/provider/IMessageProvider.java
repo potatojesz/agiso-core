@@ -18,8 +18,11 @@
  */
 package org.agiso.core.i18n.provider;
 
+import java.util.Locale;
+
 /**
  * Interfejs dostarczyciela rozwinięć kodów komunikatów na komunikaty.
+ * 
  * 
  * @author Karol Kopacz
  * @since 1.0
@@ -31,4 +34,25 @@ public interface IMessageProvider {
 	 * @return
 	 */
 	public String getMessage(String code, Object... args);
+	/**
+	 * @param locale
+	 * @param code
+	 * @param args
+	 * @return
+	 */
+	public String getMessage(Locale locale, String code, Object... args);
+
+	/**
+	 * @param code
+	 * @param args
+	 * @return
+	 */
+	public String getMessageIfExists(String code, Object... args);
+	/**
+	 * @param locale
+	 * @param code
+	 * @param args
+	 * @return
+	 */
+	public String getMessageIfExists(Locale locale, String code, Object... args);
 }
