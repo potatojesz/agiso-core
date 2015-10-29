@@ -26,6 +26,7 @@ import java.lang.reflect.Method;
 import java.util.Locale;
 
 import org.agiso.core.i18n.annotation.I18n;
+import org.agiso.core.i18n.provider.ILocaleProvider;
 import org.agiso.core.i18n.provider.IMessageProvider;
 
 /**
@@ -44,8 +45,12 @@ public abstract class I18nUtils {
 	}
 
 //	--------------------------------------------------------------------------
-//	Obsługa MessageProvider'a
+//	Obsługa LocaleProvider'a i MessageProvider'a
 //	--------------------------------------------------------------------------
+	private static ILocaleProvider localeProvider;
+	private static final ILocaleProvider internalLocaleProivder =
+			new SimpleLocaleProvider();
+
 	private static IMessageProvider[] messageProviders;
 	private static final IMessageProvider[] internalMessageProviders =
 			new IMessageProvider[] {
@@ -53,10 +58,39 @@ public abstract class I18nUtils {
 			};
 
 	static {
+		localeProvider = internalLocaleProivder;
 		messageProviders = internalMessageProviders;
 	}
 
 //	--------------------------------------------------------------------------
+	/**
+	 * Zwraca dostarczyciela lokalizacji wykorzystywanego przez klasę
+	 * narzędziową, lub <code>null</code> jeśli dostarczyciel nie był ustawiony
+	 * i jest wykorzystywany mechanizm wbudowany.
+	 */
+	public static ILocaleProvider getLocaleProvider() {
+		if(localeProvider == internalLocaleProivder) {
+			return null;
+		} else {
+			return localeProvider;
+		}
+	}
+	/**
+	 * Ustawia dostarczyciela lokalizacji wykorzystywanego przez klasę narzędziową.
+	 * Jeśli metoda nie zostanie wywołana, lokalizacja zwracana będzie zgodnie
+	 * z mechanizmem wbudowanym.<br/>
+	 * Wywołanie metody z wartością <code>null</code> przywraca mechanizm wbudowany.
+	 * 
+	 * @param provider Dostarczyciel lokalizacji.
+	 */
+	public static void setLocaleProvider(ILocaleProvider provider) {
+		if(provider == null) {
+			localeProvider = internalLocaleProivder;
+		} else {
+			localeProvider = provider;
+		}
+	}
+
 	/**
 	 * Zwraca tablicę dostarczycieli wiadomości wykorzystywanych przez klasę
 	 * narzędziową, lub <code>null</code> jeśli dostarczyciele nie byli ustawieni
@@ -76,7 +110,7 @@ public abstract class I18nUtils {
 	 * parametry wiadomości).<br/>
 	 * Wywołanie metody z wartością <code>null</code> przywraca mechanizm wbudowany.
 	 * 
-	 * @param provider Dostarczyciel lokalizacji wiadomości.
+	 * @param provider Dostarczyciel wiadomości.
 	 */
 	public static void setMessageProvider(IMessageProvider provider) {
 		setMessageProviders(provider);
@@ -90,6 +124,13 @@ public abstract class I18nUtils {
 		} else {
 			messageProviders = providers;
 		}
+	}
+
+//	--------------------------------------------------------------------------
+//	Pobieranie lokalizacji
+//	--------------------------------------------------------------------------
+	public static Locale getLocale() {
+		return localeProvider.getLocale();
 	}
 
 //	--------------------------------------------------------------------------
@@ -295,6 +336,19 @@ public abstract class I18nUtils {
 }
 
 //	--------------------------------------------------------------------------
+/**
+ * 
+ * 
+ * @author Karol Kopacz
+ * @since 1.0
+ */
+class SimpleLocaleProvider implements ILocaleProvider {
+	@Override
+	public Locale getLocale() {
+		return Locale.getDefault();
+	}
+}
+
 /**
  * 
  * 

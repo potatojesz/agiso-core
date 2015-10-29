@@ -19,6 +19,14 @@
 	<name>AGISO Core I18n</name>
 	<inceptionYear>2013</inceptionYear>
 
+	<properties>
+		<!-- JAVAX Servlet libraries versions -->
+		<javax.servlet.version>3.0.1</javax.servlet.version>
+
+		<!-- Spring libraries versions -->
+		<spring.version>4.1.6.RELEASE</spring.version>
+	</properties>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -66,7 +74,21 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.1.6.RELEASE</version>
+			<version>${spring.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- spring-context dla SpringMessageSourceAccessorMessageProvider'a -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

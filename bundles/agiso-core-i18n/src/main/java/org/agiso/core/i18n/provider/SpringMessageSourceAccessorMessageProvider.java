@@ -1,6 +1,6 @@
-/* org.agiso.core.i18n.provider.SpringMessageSourceMessageProvider (2 paź 2015)
+/* org.agiso.core.i18n.provider.MessageSourceAccessorMessageProvider (29 paź 2015)
  * 
- * SpringMessageSourceMessageProvider.java
+ * MessageSourceAccessorMessageProvider.java
  * 
  * Copyright 2015 agiso.org
  * 
@@ -18,50 +18,59 @@
  */
 package org.agiso.core.i18n.provider;
 
+import java.io.Serializable;
 import java.util.Locale;
 
-import org.agiso.core.i18n.util.I18nUtils;
-import org.springframework.context.MessageSource;
+import javax.servlet.ServletContext;
+
 import org.springframework.context.NoSuchMessageException;
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  * {@link IMessageProvider} rozwijający wiadomości z wykorzystaniem mechanizmów
- * {@link MessageSource}'a dostarczanego przez framework Spring.
+ * {@link MessageSourceAccessor}'a dostarczanego przez framework Spring.
  * 
  * @author Karol Kopacz
  * @since 1.0
  */
-public class SpringMessageSourceMessageProvider implements IMessageProvider {
-	private final MessageSource messageSource;
+public class SpringMessageSourceAccessorMessageProvider implements IMessageProvider, Serializable {
+	private static final long serialVersionUID = 1L;
+
+	private MessageSourceAccessor messageSource;
 
 //	--------------------------------------------------------------------------
-	public SpringMessageSourceMessageProvider(MessageSource messageSource) {
-		this.messageSource = messageSource;
+	public SpringMessageSourceAccessorMessageProvider(ServletContext servletContext) {
+		messageSource = new MessageSourceAccessor(
+				WebApplicationContextUtils.getRequiredWebApplicationContext(
+						servletContext
+				)
+		);
 	}
 
 //	--------------------------------------------------------------------------
 	@Override
 	public String getMessage(String code, Object... args) {
-		return getMessage(I18nUtils.getLocale(), code, args);
+		return messageSource.getMessage(code, args);
 	}
 	@Override
 	public String getMessage(Locale locale, String code, Object... args) {
-		try {
-			return messageSource.getMessage(code, args, locale);
-		} catch(NoSuchMessageException e) {
-			throw new RuntimeException("Message code '" + code + "' not found", e);
-		}
+		return messageSource.getMessage(code, args, locale);
 	}
 	@Override
 	public String getMessageIfExists(String code, Object... args) {
-		return getMessageIfExists(I18nUtils.getLocale(), code, args);
+		try {
+			return messageSource.getMessage(code, args);
+		} catch(NoSuchMessageException nsme) {
+			return null;
+		}
 	}
 	@Override
 	public String getMessageIfExists(Locale locale, String code, Object... args) {
 		try {
 			return messageSource.getMessage(code, args, locale);
-		} catch(NoSuchMessageException e) {
+		} catch(NoSuchMessageException nsme) {
+			return null;
 		}
-		return null;
 	}
 }
