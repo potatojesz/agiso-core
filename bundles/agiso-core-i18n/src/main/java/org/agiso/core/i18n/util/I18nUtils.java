@@ -47,6 +47,8 @@ public abstract class I18nUtils {
 //	--------------------------------------------------------------------------
 //	Obsługa LocaleProvider'a i MessageProvider'a
 //	--------------------------------------------------------------------------
+	private static final Method METHOD_TO_LANGUAGE_TAG;
+
 	private static ILocaleProvider localeProvider;
 	private static final ILocaleProvider internalLocaleProivder =
 			new SimpleLocaleProvider();
@@ -58,6 +60,13 @@ public abstract class I18nUtils {
 			};
 
 	static {
+		Method method_toLanguageTag = null;
+		try {
+			method_toLanguageTag = Locale.class.getMethod("toLanguageTag");
+		} catch(Exception e) {
+		}
+		METHOD_TO_LANGUAGE_TAG = method_toLanguageTag;
+
 		localeProvider = internalLocaleProivder;
 		messageProviders = internalMessageProviders;
 	}
@@ -127,10 +136,21 @@ public abstract class I18nUtils {
 	}
 
 //	--------------------------------------------------------------------------
-//	Pobieranie lokalizacji
+//	Pobieranie lokalizacji i znacznika języka
 //	--------------------------------------------------------------------------
 	public static Locale getLocale() {
 		return localeProvider.getLocale();
+	}
+
+	public static String getLocaleLanguageTag() {
+		return getLocaleLanguageTag(getLocale());
+	}
+	public static String getLocaleLanguageTag(Locale locale) {
+		if(METHOD_TO_LANGUAGE_TAG != null) try {
+			return (String)METHOD_TO_LANGUAGE_TAG.invoke(locale);
+		} catch(Exception e) {
+		}
+		return locale.toString();
 	}
 
 //	--------------------------------------------------------------------------
@@ -376,7 +396,7 @@ class SimpleMessageProvider implements IMessageProvider {
 		}
 
 		if(args == null || args.length == 0) {
-			return locale.toLanguageTag() + " " + code + "[]";
+			return I18nUtils.getLocaleLanguageTag(locale) + " " + code + "[]";
 		} else {
 			StringBuilder builder = new StringBuilder();
 			builder.append(code).append("[0: ");
