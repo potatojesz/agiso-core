@@ -20,10 +20,10 @@ package org.agiso.core.i18n.util;
 
 import static org.agiso.core.i18n.util.I18nUtils.*;
 
-import org.agiso.core.i18n.provider.AnnotationMessageProvider;
 import org.agiso.core.i18n.beans.BeanImplementation1;
 import org.agiso.core.i18n.beans.BeanImplementation2;
 import org.agiso.core.i18n.beans.IBeanInterface;
+import org.agiso.core.i18n.support.reflections.AnnotationMessageProvider;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

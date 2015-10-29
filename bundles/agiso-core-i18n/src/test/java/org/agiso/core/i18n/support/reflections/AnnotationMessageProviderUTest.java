@@ -1,4 +1,4 @@
-/* org.agiso.core.i18n.provider.AnnotationMessageProviderUTest (20-01-2015)
+/* org.agiso.core.i18n.support.reflections.AnnotationMessageProviderUTest (20-01-2015)
  * 
  * AnnotationMessageProviderUTest.java
  * 
@@ -16,13 +16,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agiso.core.i18n.provider;
+package org.agiso.core.i18n.support.reflections;
 
 import static org.agiso.core.i18n.util.I18nUtils.*;
 
 import org.agiso.core.i18n.beans.BeanImplementation1;
 import org.agiso.core.i18n.beans.EnumMessages;
 import org.agiso.core.i18n.beans.IBeanInterface;
+import org.agiso.core.i18n.provider.IMessageProvider;
+import org.agiso.core.i18n.support.reflections.AnnotationMessageProvider;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

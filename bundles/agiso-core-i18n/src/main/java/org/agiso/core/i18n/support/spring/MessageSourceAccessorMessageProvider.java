@@ -1,4 +1,4 @@
-/* org.agiso.core.i18n.provider.MessageSourceAccessorMessageProvider (29 paź 2015)
+/* org.agiso.core.i18n.support.spring.MessageSourceAccessorMessageProvider (29 paź 2015)
  * 
  * MessageSourceAccessorMessageProvider.java
  * 
@@ -16,13 +16,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agiso.core.i18n.provider;
+package org.agiso.core.i18n.support.spring;
 
 import java.io.Serializable;
 import java.util.Locale;
 
 import javax.servlet.ServletContext;
 
+import org.agiso.core.i18n.provider.IMessageProvider;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -34,13 +35,13 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * @author Karol Kopacz
  * @since 1.0
  */
-public class SpringMessageSourceAccessorMessageProvider implements IMessageProvider, Serializable {
+public class MessageSourceAccessorMessageProvider implements IMessageProvider, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private MessageSourceAccessor messageSource;
 
 //	--------------------------------------------------------------------------
-	public SpringMessageSourceAccessorMessageProvider(ServletContext servletContext) {
+	public MessageSourceAccessorMessageProvider(ServletContext servletContext) {
 		messageSource = new MessageSourceAccessor(
 				WebApplicationContextUtils.getRequiredWebApplicationContext(
 						servletContext

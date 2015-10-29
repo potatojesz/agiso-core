@@ -1,8 +1,8 @@
-/* org.agiso.core.i18n.provider.SpringLocaleContextHolderLocaleProvider (29 paź 2015)
+/* org.agiso.core.i18n.support.reflections.package-info (29 paź 2015)
  * 
- * SpringLocaleContextHolderLocaleProvider.java
+ * package-info.java
  * 
- * Copyright 2015 agiso.org
+ * Copyright 2013 agiso.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,22 +16,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agiso.core.i18n.provider;
-
-import java.util.Locale;
-
-import org.springframework.context.i18n.LocaleContextHolder;
 
 /**
- * {@link ILocaleProvider} dostarczający lokalizację z wykorzystaniem mechanizmów
- * {@link LocaleContextHolder}'a dostarczanego przez framework Spring.
+ * 
  * 
  * @author Karol Kopacz
  * @since 1.0
  */
-public class SpringLocaleContextHolderLocaleProvider implements ILocaleProvider {
-	@Override
-	public Locale getLocale() {
-		return LocaleContextHolder.getLocale();
-	}
-}
+package org.agiso.core.i18n.support.reflections;

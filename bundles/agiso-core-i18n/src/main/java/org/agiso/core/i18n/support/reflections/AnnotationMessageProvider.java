@@ -1,4 +1,4 @@
-/* org.agiso.core.i18n.provider.AnnotationMessageProvider (4 gru 2014)
+/* org.agiso.core.i18n.support.reflections.AnnotationMessageProvider (4 gru 2014)
  * 
  * AnnotationMessageProvider.java
  * 
@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agiso.core.i18n.provider;
+package org.agiso.core.i18n.support.reflections;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.agiso.core.i18n.annotation.I18n;
+import org.agiso.core.i18n.provider.AbstractMessageProvider;
 import org.agiso.core.i18n.util.I18nUtils;
 import org.reflections.Reflections;
 import org.reflections.scanners.FieldAnnotationsScanner;

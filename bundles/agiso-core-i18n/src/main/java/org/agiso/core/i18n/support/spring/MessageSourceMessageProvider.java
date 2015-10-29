@@ -1,6 +1,6 @@
-/* org.agiso.core.i18n.provider.SpringMessageSourceMessageProvider (2 paź 2015)
+/* org.agiso.core.i18n.support.spring.MessageSourceMessageProvider (2 paź 2015)
  * 
- * SpringMessageSourceMessageProvider.java
+ * MessageSourceMessageProvider.java
  * 
  * Copyright 2015 agiso.org
  * 
@@ -16,10 +16,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agiso.core.i18n.provider;
+package org.agiso.core.i18n.support.spring;
 
 import java.util.Locale;
 
+import org.agiso.core.i18n.provider.IMessageProvider;
 import org.agiso.core.i18n.util.I18nUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
@@ -31,11 +32,11 @@ import org.springframework.context.NoSuchMessageException;
  * @author Karol Kopacz
  * @since 1.0
  */
-public class SpringMessageSourceMessageProvider implements IMessageProvider {
+public class MessageSourceMessageProvider implements IMessageProvider {
 	private final MessageSource messageSource;
 
 //	--------------------------------------------------------------------------
-	public SpringMessageSourceMessageProvider(MessageSource messageSource) {
+	public MessageSourceMessageProvider(MessageSource messageSource) {
 		this.messageSource = messageSource;
 	}
 
