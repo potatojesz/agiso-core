@@ -145,6 +145,11 @@ public class SystemContextBean implements ISystemContext {
 	}
 
 	@Override
+	public boolean containsAttribute(Scope scope, String key) {
+		return getScopeMap(scope).containsKey(key);
+	}
+
+	@Override
 	public String getString(Scope scope, String key) {
 		Object value = getScopeMap(scope).get(key);
 		if(value instanceof String) {

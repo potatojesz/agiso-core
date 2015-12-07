@@ -42,6 +42,8 @@ public interface ISystemContext {
 	public Object putString(Scope scope, String key, String value);
 	public Object putAttribute(Scope scope, String key, Object value);
 
+	public boolean containsAttribute(Scope scope, String key);
+
 	public String getString(Scope scope, String key);
 	public Object getAttribute(Scope scope, String key);
 
