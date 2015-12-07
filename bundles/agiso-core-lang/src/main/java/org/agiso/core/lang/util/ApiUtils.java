@@ -18,7 +18,11 @@
  */
 package org.agiso.core.lang.util;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -30,14 +34,31 @@ import java.util.Set;
  * @since 1.0
  */
 public final class ApiUtils {
+	public static <T> FlowSet<T, ?> flowSet() {
+		return ApiUtils.flowSet(new HashSet<T>());
+	}
+	public static <T> FlowSet<T, ?> flowSet(T... elements) {
+		return ApiUtils.<T>flowSet()
+				.addAll(Arrays.asList(elements));
+	}
 	public static <T, S extends Set<T>> FlowSet<T, S> flowSet(S set) {
 		return new FlowSet<T, S>(set);
 	}
 
+	public static <T> FlowList<T, ?> flowList() {
+		return ApiUtils.flowList(new ArrayList<T>());
+	}
+	public static <T> FlowList<T, ?> flowList(T... elements) {
+		return ApiUtils.<T>flowList()
+				.addAll(Arrays.asList(elements));
+	}
 	public static <T, L extends List<T>> FlowList<T, L> flowList(L list) {
 		return new FlowList<T, L>(list);
 	}
 
+	public static <K, V> FlowMap<K, V, ?> flowMap() {
+		return flowMap(new HashMap<K, V>());
+	}
 	public static <K, V, M extends Map<K, V>> FlowMap<K, V, M> flowMap(M map) {
 		return new FlowMap<K, V, M>(map);
 	}
