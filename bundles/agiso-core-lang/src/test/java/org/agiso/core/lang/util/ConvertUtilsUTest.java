@@ -18,10 +18,6 @@
  */
 package org.agiso.core.lang.util;
 
-import static org.agiso.core.lang.util.ConvertUtils.*;
-
-import org.testng.annotations.Test;
-
 /**
  * Testuje poprawność działania metod klasy narzędziowej {@link ConvertUtils}.
  * 
