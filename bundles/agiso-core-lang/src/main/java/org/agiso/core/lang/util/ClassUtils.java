@@ -18,7 +18,10 @@
  */
 package org.agiso.core.lang.util;
 
+import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -33,6 +36,124 @@ import java.util.regex.Pattern;
 public abstract class ClassUtils {
 	private static final Logger logger = Logger.getLogger(ClassUtils.class.getName());
 
+//	--------------------------------------------------------------------------
+//	Wyszukiwanie metod w klasach
+//	--------------------------------------------------------------------------
+	/**
+	 * Sprawdza, czy wskazana klasa posiada publiczną metodę o określonej sygnaturze.
+	 * 
+	 * <p>Based on:
+	 * org.springframework.util.ClassUtils.hasMethod(Class<?>, String, Class<?>...)
+	 * 
+	 * @param clazz Klasa do sprawdzenia
+	 * @param methodName Nazwa wyszukiwanej metody
+	 * @param paramTypes Tablica typów parametrów wywołania metody
+	 * @return <code>true</code> jeśli klasa zawiera metodę
+	 * @see Class#getMethod
+	 */
+	public static boolean hasMethod(Class<?> clazz, String methodName, Class<?>... paramTypes) {
+		return (getMethodIfAvailable(clazz, methodName, paramTypes) != null);
+	}
+
+	/**
+	 * Wyszukuje dla wskazanej klasy publiczną metodę o określonej sygnaturze. Jeśli
+	 * metoda nie zostanie naleziona wyrzuca wyjątek {@code IllegalStateException}.
+	 * <p>W przypadku gdy nie jest określona tablica parametrów wywołania, zwraca metodę
+	 * tylko gdy wynik wyszukiwania jest unikatowy, tj. istnieje tylko jedna publiczna
+	 * metoda o wskazanej nazwie.
+	 * 
+	 * <p>Based on:
+	 * org.springframework.util.ClassUtils.getMethod(Class<?>, String, Class<?>...)
+	 * 
+	 * @param clazz Klasa do sprawdzenia
+	 * @param methodName Nazwa wyszukiwanej metody
+	 * @param paramTypes Tablica typów parametrów wywołania metody
+	 *     (może być {@code null} w celu wyszukania dowolnej metody o wskazanej nazwie)
+	 * @return Znaleziona metoda (niegdy {@code null})
+	 * @throws IllegalStateException jeśli nie znaleziono metody lub nie jest unikatowa
+	 * @see Class#getMethod
+	 */
+	public static Method getMethod(Class<?> clazz, String methodName, Class<?>... paramTypes) {
+		if(clazz == null) {
+			throw new NullPointerException("Klasa musi być określona");
+		}
+		if(methodName == null) {
+			throw new NullPointerException("Nazwa metody musi być określona");
+		}
+
+		if(paramTypes != null) {
+			try {
+				return clazz.getMethod(methodName, paramTypes);
+			} catch(NoSuchMethodException ex) {
+				throw new IllegalStateException("Expected method not found: " + ex);
+			}
+		} else {
+			Set<Method> candidates = new HashSet<Method>(1);
+			Method[] methods = clazz.getMethods();
+			for(Method method : methods) {
+				if(methodName.equals(method.getName())) {
+					candidates.add(method);
+				}
+			}
+			if(candidates.size() == 1) {
+				return candidates.iterator().next();
+			} else if(candidates.isEmpty()) {
+				throw new IllegalStateException("Expected method not found: " + clazz + "." + methodName);
+			} else {
+				throw new IllegalStateException("No unique method found: " + clazz + "." + methodName);
+			}
+		}
+	}
+
+	/**
+	 * Wyszukuje dla wskazanej klasy publiczną metodę o określonej sygnaturze. Jeśli
+	 * metoda nie zostanie naleziona zwraca {@code null}.
+	 * <p>W przypadku gdy nie jest określona tablica parametrów wywołania, zwraca metodę
+	 * tylko gdy wynik wyszukiwania jest unikatowy, tj. istnieje tylko jedna publiczna
+	 * metoda o wskazanej nazwie.
+	 * 
+	 * <p>Based on:
+	 * org.springframework.util.ClassUtils.getMethodIfAvailable(Class<?>, String, Class<?>...)
+	 * 
+	 * @param clazz Klasa do sprawdzenia
+	 * @param methodName Nazwa wyszukiwanej metody
+	 * @param paramTypes Tablica typów parametrów wywołania metody
+	 *     (może być {@code null} w celu wyszukania dowolnej metody o wskazanej nazwie)
+	 * @return Znaleziona metoda lub @{code null} gdy nie istnieje lub nie jest unikatowa
+	 * @see Class#getMethod
+	 */
+	public static Method getMethodIfAvailable(Class<?> clazz, String methodName, Class<?>... paramTypes) {
+		if(clazz == null) {
+			throw new NullPointerException("Klasa musi być określona");
+		}
+		if(methodName == null) {
+			throw new NullPointerException("Nazwa metody musi być określona");
+		}
+
+		if(paramTypes != null) {
+			try {
+				return clazz.getMethod(methodName, paramTypes);
+			} catch(NoSuchMethodException ex) {
+				return null;
+			}
+		} else {
+			Set<Method> candidates = new HashSet<Method>(1);
+			Method[] methods = clazz.getMethods();
+			for(Method method : methods) {
+				if(methodName.equals(method.getName())) {
+					candidates.add(method);
+				}
+			}
+			if(candidates.size() == 1) {
+				return candidates.iterator().next();
+			}
+			return null;
+		}
+	}
+
+//	--------------------------------------------------------------------------
+//	Wyszukiwanie lokalizacji biblioteki jar zawierającej klasę
+//	Na podstawie: https://dzone.com/articles/locate-jar-classpath-given
 //	--------------------------------------------------------------------------
 	public static String locate(Class<?> c) /*throws ClassNotFoundException*/ {
 		return locate(c, c.getClassLoader());

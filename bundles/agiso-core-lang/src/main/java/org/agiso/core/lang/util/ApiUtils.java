@@ -37,8 +37,11 @@ public final class ApiUtils {
 	public static <T> FlowSet<T, ?> flowSet() {
 		return ApiUtils.flowSet(new HashSet<T>());
 	}
+	public static <T> FlowSet<T, ?> flowSet(int initialCapacity) {
+		return ApiUtils.flowSet(new HashSet<T>(initialCapacity));
+	}
 	public static <T> FlowSet<T, ?> flowSet(T... elements) {
-		return ApiUtils.<T>flowSet()
+		return ApiUtils.<T>flowSet(elements.length)
 				.addAll(Arrays.asList(elements));
 	}
 	public static <T, S extends Set<T>> FlowSet<T, S> flowSet(S set) {
@@ -48,8 +51,11 @@ public final class ApiUtils {
 	public static <T> FlowList<T, ?> flowList() {
 		return ApiUtils.flowList(new ArrayList<T>());
 	}
+	public static <T> FlowList<T, ?> flowList(int initialCapacity) {
+		return ApiUtils.flowList(new ArrayList<T>(initialCapacity));
+	}
 	public static <T> FlowList<T, ?> flowList(T... elements) {
-		return ApiUtils.<T>flowList()
+		return ApiUtils.<T>flowList(elements.length)
 				.addAll(Arrays.asList(elements));
 	}
 	public static <T, L extends List<T>> FlowList<T, L> flowList(L list) {
@@ -58,6 +64,9 @@ public final class ApiUtils {
 
 	public static <K, V> FlowMap<K, V, ?> flowMap() {
 		return flowMap(new HashMap<K, V>());
+	}
+	public static <K, V> FlowMap<K, V, ?> flowMap(int initialCapacity) {
+		return flowMap(new HashMap<K, V>(initialCapacity));
 	}
 	public static <K, V, M extends Map<K, V>> FlowMap<K, V, M> flowMap(M map) {
 		return new FlowMap<K, V, M>(map);
