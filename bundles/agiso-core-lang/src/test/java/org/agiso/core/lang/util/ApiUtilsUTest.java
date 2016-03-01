@@ -42,8 +42,6 @@ import org.testng.annotations.Test;
 public class ApiUtilsUTest {
 	@Test
 	public void testFlowSet() throws Exception {
-		Iterator<?> iterator;
-
 		Set<String> stringSet;
 		stringSet = ApiUtils.<String>flowSet().getSet();
 		assert stringSet != null;
@@ -57,12 +55,11 @@ public class ApiUtilsUTest {
 		stringSet = ApiUtils.<String>flowSet("A", "B").getSet();
 		assert stringSet != null;
 		assert stringSet.size() == 2;
-		iterator = stringSet.iterator();
-		assert iterator.next().equals("A");
-		assert iterator.next().equals("B");
-		assert !iterator.hasNext();
+		assert stringSet.contains("A");
+		assert stringSet.contains("B");
 
 		Set<Long> longSet;
+		Iterator<Long> iterator;
 		longSet = flowSet(new LinkedHashSet<Long>())
 						.add(123L)
 						.add(234L)
