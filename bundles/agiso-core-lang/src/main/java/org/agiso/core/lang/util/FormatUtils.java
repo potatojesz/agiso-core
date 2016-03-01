@@ -20,7 +20,6 @@ package org.agiso.core.lang.util;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -33,36 +32,52 @@ import java.util.Locale;
 public class FormatUtils {
 
 //	Deklaracje pól statycznych -----------------------------------------------
-	// TODO: Zweryfikować bezpieczeństwo wątkowe klasy NumberFormat
 	private static NumberFormat numberFormatter;
 	private static NumberFormat currencyFormatter;
+
+	// Klasa NumberFormat nie jest bezpieczna w środowisku wielowątkowym.
+	// Dlatego instancje zwracane umieszczamy w zasięgu lokalnym wątku:
+	private static ThreadLocal<NumberFormat> numberFormatterTl;
+	private static ThreadLocal<NumberFormat> currencyFormatterTl;
 
 //	Inicjalizacja pól statycznych --------------------------------------------
 	static {
 		numberFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
 		numberFormatter.setMaximumFractionDigits(4);
+		numberFormatterTl = new ThreadLocal<NumberFormat>() {
+			@Override
+			protected NumberFormat initialValue() {
+				return (NumberFormat)numberFormatter.clone();
+			}
+		};
 
 		currencyFormatter = NumberFormat.getNumberInstance(Locale.getDefault());
 		currencyFormatter.setMinimumFractionDigits(2);
 		currencyFormatter.setMaximumFractionDigits(2);
+		currencyFormatterTl = new ThreadLocal<NumberFormat>() {
+			@Override
+			protected NumberFormat initialValue() {
+				return (NumberFormat)currencyFormatter.clone();
+			}
+		};
 	}
 
 //	Definicje metod dostępowych ----------------------------------------------
-	public static NumberFormat getCurrencyFormatter() {
-		return currencyFormatter;
+	public static NumberFormat getNumberFormatter() {
+		return numberFormatterTl.get();
 	}
 
-	public static NumberFormat getNumberFormatter() {
-		return numberFormatter;
+	public static NumberFormat getCurrencyFormatter() {
+		return currencyFormatterTl.get();
 	}
 
 //	Definicje metod narzędziowych --------------------------------------------
-	public static final synchronized String formatCurrency(Object obj) {
-		return currencyFormatter.format(obj).replace('\u00A0', '\u0020');
-	}
-
 	public static final synchronized String formatNumber(Object obj) {
 		return numberFormatter.format(obj).replace('\u00A0', '\u0020');
+	}
+
+	public static final synchronized String formatCurrency(Object obj) {
+		return currencyFormatter.format(obj).replace('\u00A0', '\u0020');
 	}
 
 	public static final String formatDate(Date date) {
