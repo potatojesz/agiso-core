@@ -90,6 +90,16 @@ public final class ApiUtils {
 			return this;
 		}
 
+		public FlowSet<T, S> remove(T e) {
+			set.remove(e);
+			return this;
+		}
+
+		public FlowSet<T, S> removeAll(Collection<? extends T> c) {
+			set.removeAll(c);
+			return this;
+		}
+
 		public S getSet() {
 			return set;
 		}
@@ -112,6 +122,16 @@ public final class ApiUtils {
 			return this;
 		}
 
+		public FlowList<T, L> remove(T e) {
+			list.remove(e);
+			return this;
+		}
+
+		public FlowList<T, L> removeAll(Collection<? extends T> c) {
+			list.removeAll(c);
+			return this;
+		}
+
 		public L getList() {
 			return list;
 		}
@@ -131,6 +151,11 @@ public final class ApiUtils {
 
 		public FlowMap<K, V, M> putAll(Map<? extends K, ? extends V> m) {
 			map.putAll(m);
+			return this;
+		}
+
+		public FlowMap<K, V, M> remove(K k) {
+			map.remove(k);
 			return this;
 		}
 
