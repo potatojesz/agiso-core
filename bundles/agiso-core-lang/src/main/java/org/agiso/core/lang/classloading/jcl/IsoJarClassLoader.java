@@ -131,7 +131,7 @@ public class IsoJarClassLoader extends AbstractClassLoader {
 	 * @param jarStream
 	 */
 	public void add(InputStream jarStream) {
-		classpathResources.loadJar(jarStream);
+		classpathResources.loadJar(null, jarStream);
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class IsoJarClassLoader extends AbstractClassLoader {
 			logger.finest("Unloading class " + className);
 		}
 
-		if(classes.containsKey( className )) {
+		if(classes.containsKey(className)) {
 			if(logger.isLoggable(Level.FINEST)) {
 				logger.finest("Removing loaded class " + className);
 			}
@@ -175,8 +175,8 @@ public class IsoJarClassLoader extends AbstractClassLoader {
 			try {
 				classpathResources.unload(formatClassName(className));
 			} catch(ResourceNotFoundException e) {
-				throw new JclException( "Something is very wrong!!!"
-						+ "The locally loaded classes must be in synch with ClasspathResources", e );
+				throw new JclException("Something is very wrong!!!"
+						+ "The locally loaded classes must be in synch with ClasspathResources", e);
 			}
 		} else {
 			try {
@@ -246,7 +246,7 @@ public class IsoJarClassLoader extends AbstractClassLoader {
 	 * Local class loader
 	 */
 	class LocalLoader extends ProxyClassLoader {
-		private final Logger logger = Logger.getLogger( LocalLoader.class.getName() );
+		private final Logger logger = Logger.getLogger(LocalLoader.class.getName());
 
 		public LocalLoader() {
 			order = 10;
@@ -258,7 +258,7 @@ public class IsoJarClassLoader extends AbstractClassLoader {
 			Class result = null;
 			byte[] classBytes;
 
-			result = classes.get( className );
+			result = classes.get(className);
 			if(result != null) {
 				if(logger.isLoggable(Level.FINEST)) {
 					logger.finest("Returning local loaded class [" + className + "] from cache");
@@ -271,7 +271,7 @@ public class IsoJarClassLoader extends AbstractClassLoader {
 				return null;
 			}
 
-			result = defineClass( className, classBytes, 0, classBytes.length );
+			result = defineClass(className, classBytes, 0, classBytes.length);
 
 			if(result == null) {
 				return null;
@@ -307,6 +307,19 @@ public class IsoJarClassLoader extends AbstractClassLoader {
 				return new ByteArrayInputStream(arr);
 			}
 
+			return null;
+		}
+
+		@Override
+		public URL findResource(String name) {
+			URL url = classpathResources.getResourceURL(name);
+			if(url != null) {
+				if(logger.isLoggable(Level.FINEST)) {
+					logger.finest("Returning newly loaded resource " + name);
+				}
+
+				return url;
+			}
 			return null;
 		}
 	}

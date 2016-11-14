@@ -45,7 +45,10 @@ public class SystemContextBean implements ISystemContext {
 	public void setFlashAttributesFactoryBeanName(String name) {
 		flashAttributesFactoryBeanName = name;
 	}
-//	private Map<String, Object> flashAttributes;
+	private IAttributesFactory flashAttributesFactoryBean;
+	public void setFlashAttributesFactoryBean(IAttributesFactory factory) {
+		this.flashAttributesFactoryBean = factory;
+	}
 //	@Autowired(required = false) @Qualifier("flashAttributes")
 //	public void setFlashAttributes(Map<String, Object> attributes) {
 //		flashAttributes = Collections.synchronizedMap(attributes);
@@ -255,7 +258,11 @@ public class SystemContextBean implements ISystemContext {
 	private Map<String, Object> getScopeMap(Scope scope) {
 		switch(scope) {
 			case FLASH:
-				return getAttributesMap(flashAttributesFactoryBeanName);
+				if(flashAttributesFactoryBean != null) {
+					return flashAttributesFactoryBean.getAttributesMap();
+				} else {
+					return getAttributesMap(flashAttributesFactoryBeanName);
+				}
 			case REQUEST:
 				return getAttributesMap(requestAttributesFactoryBeanName);
 			case SESSION:

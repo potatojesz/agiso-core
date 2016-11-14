@@ -52,6 +52,10 @@ public abstract class BeanUtils {
 		BeanUtils.beanFactory = beanFactory;
 	}
 
+	public static boolean isInitialized() {
+		return BeanUtils.beanFactory != null;
+	}
+
 //	--------------------------------------------------------------------------
 	/**
 	 * Pobiera z kontekstu aplikacji obiekt o wskazanej nazwie.

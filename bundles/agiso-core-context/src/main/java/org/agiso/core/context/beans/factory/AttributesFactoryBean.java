@@ -38,6 +38,7 @@ import org.agiso.core.logging.util.LogUtils;
  */
 public class AttributesFactoryBean implements IAttributesFactory, Serializable {
 	private static final long serialVersionUID = 1L;
+
 	private static final transient Logger logger = LogUtils.getLogger(AttributesFactoryBean.class);
 
 //	--------------------------------------------------------------------------

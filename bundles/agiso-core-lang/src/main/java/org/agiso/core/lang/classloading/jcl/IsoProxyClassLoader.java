@@ -19,6 +19,7 @@
 package org.agiso.core.lang.classloading.jcl;
 
 import java.io.InputStream;
+import java.net.URL;
 
 import org.xeustechnologies.jcl.ProxyClassLoader;
 
@@ -52,5 +53,10 @@ public class IsoProxyClassLoader extends ProxyClassLoader {
 	@Override
 	public InputStream loadResource(String name) {
 		return cl.getResourceAsStream(name);
+	}
+
+	@Override
+	public URL findResource(String name) {
+		return null;
 	}
 }
