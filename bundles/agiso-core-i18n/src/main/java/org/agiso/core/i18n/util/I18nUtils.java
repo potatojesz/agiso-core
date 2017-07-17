@@ -51,7 +51,12 @@ public abstract class I18nUtils {
 
 	private static ILocaleProvider localeProvider;
 	private static final ILocaleProvider internalLocaleProivder =
-			new SimpleLocaleProvider();
+			new ILocaleProvider() {
+				@Override
+				public Locale getLocale() {
+					return Locale.getDefault();
+				}
+			};
 
 	private static IMessageProvider[] messageProviders;
 	private static final IMessageProvider[] internalMessageProviders =
@@ -157,7 +162,7 @@ public abstract class I18nUtils {
 //	Pobieranie tłumaczeń na podstawie kodów, wyliczeń, klas, metod i pól
 //	--------------------------------------------------------------------------
 	public static String getMessage(String code, Object... args) {
-		return getMessage(Locale.getDefault(), code, args);
+		return getMessage(I18nUtils.getLocale(), code, args);
 	}
 	public static String getMessage(Locale locale, String code, Object... args) {
 		String message = null;
@@ -362,23 +367,10 @@ public abstract class I18nUtils {
  * @author Karol Kopacz
  * @since 1.0
  */
-class SimpleLocaleProvider implements ILocaleProvider {
-	@Override
-	public Locale getLocale() {
-		return Locale.getDefault();
-	}
-}
-
-/**
- * 
- * 
- * @author Karol Kopacz
- * @since 1.0
- */
 class SimpleMessageProvider implements IMessageProvider {
 	@Override
 	public String getMessage(String code, Object... args) {
-		return getMessage(Locale.getDefault(), code, args);
+		return getMessage(I18nUtils.getLocale(), code, args);
 	}
 	@Override
 	public String getMessage(Locale locale, String code, Object... args) {
@@ -387,12 +379,12 @@ class SimpleMessageProvider implements IMessageProvider {
 
 	@Override
 	public String getMessageIfExists(String code, Object... args) {
-		return getMessageIfExists(Locale.getDefault(), code, args);
+		return getMessageIfExists(I18nUtils.getLocale(), code, args);
 	}
 	@Override
 	public String getMessageIfExists(Locale locale, String code, Object... args) {
 		if(locale == null) {
-			locale = Locale.getDefault();
+			locale = I18nUtils.getLocale();
 		}
 
 		if(args == null || args.length == 0) {
