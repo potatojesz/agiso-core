@@ -9,7 +9,7 @@
 
 	<groupId>org.agiso.core</groupId>
 	<artifactId>agiso-core-pom</artifactId>
-	<version><!--org.agiso.core-->0.0.2.RC6</version>
+	<version><!--org.agiso.core-->0.0.2.RC7</version>
 	<packaging>pom</packaging>
 
 	<name>AGISO Core POM</name>

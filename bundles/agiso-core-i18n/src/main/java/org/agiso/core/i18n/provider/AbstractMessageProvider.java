@@ -21,6 +21,8 @@ package org.agiso.core.i18n.provider;
 import java.text.MessageFormat;
 import java.util.Locale;
 
+import org.agiso.core.i18n.util.I18nUtils;
+
 /**
  * 
  * 
@@ -41,7 +43,7 @@ public abstract class AbstractMessageProvider extends MessageProviderSupport imp
 //	--------------------------------------------------------------------------
 	@Override
 	public String getMessage(String code, Object... args) {
-		return getMessage(Locale.getDefault(), code, args);
+		return getMessage(I18nUtils.getLocale(), code, args);
 	}
 	@Override
 	public String getMessage(Locale locale, String code, Object... args) {
@@ -54,7 +56,7 @@ public abstract class AbstractMessageProvider extends MessageProviderSupport imp
 
 	@Override
 	public String getMessageIfExists(String code, Object... args) {
-		return getMessageIfExists(Locale.getDefault(), code, args);
+		return getMessageIfExists(I18nUtils.getLocale(), code, args);
 	}
 	@Override
 	public String getMessageIfExists(Locale locale, String code, Object... args) {
@@ -76,7 +78,7 @@ public abstract class AbstractMessageProvider extends MessageProviderSupport imp
 		}
 
 		if(locale == null) {
-			locale = Locale.getDefault();
+			locale = I18nUtils.getLocale();
 		}
 
 		final MessageFormat messageFormat = resolveMessageFormat(locale, code);
