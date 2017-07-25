@@ -30,7 +30,7 @@ import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 
 /**
- * 
+ * Pośrednik {@link MessageSource} wykorzystujący mechanizmy I18nUtils.
  * 
  * @author Karol Kopacz
  * @since 1.0
@@ -38,19 +38,20 @@ import org.springframework.context.NoSuchMessageException;
 public class I18nUtilsMessageSourceProxy implements MessageSource {
 	private final MessageSource targetMessageSource;
 
-	private final ILocaleProvider localeProvider;
-	private final IMessageProvider[] messageProviders;
+	private final ILocaleProvider orgLocaleProvider;
+	private final IMessageProvider[] orgMessageProviders;
 
 //	--------------------------------------------------------------------------
 	public I18nUtilsMessageSourceProxy(MessageSource targetMessageSource) {
+		this(targetMessageSource, new LocaleContextHolderLocaleProvider());
+	}
+	public I18nUtilsMessageSourceProxy(MessageSource targetMessageSource, ILocaleProvider localeProvider) {
 		this.targetMessageSource = targetMessageSource;
 
-		this.localeProvider = I18nUtils.getLocaleProvider();
-		I18nUtils.setLocaleProvider(
-				new LocaleContextHolderLocaleProvider()
-		);
+		this.orgLocaleProvider = I18nUtils.getLocaleProvider();
+		I18nUtils.setLocaleProvider(localeProvider);
 
-		this.messageProviders = I18nUtils.getMessageProviders();
+		this.orgMessageProviders = I18nUtils.getMessageProviders();
 		I18nUtils.setMessageProvider(
 				new MessageSourceMessageProvider(this.targetMessageSource)
 		);
@@ -59,8 +60,8 @@ public class I18nUtilsMessageSourceProxy implements MessageSource {
 //	--------------------------------------------------------------------------
 	@PreDestroy
 	public void cleanUp() throws Exception {
-		I18nUtils.setLocaleProvider(localeProvider);
-		I18nUtils.setMessageProviders(messageProviders);
+		I18nUtils.setLocaleProvider(orgLocaleProvider);
+		I18nUtils.setMessageProviders(orgMessageProviders);
 	}
 
 //	--------------------------------------------------------------------------
