@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,7 +42,7 @@ public final class ApiUtils {
 		return ApiUtils.flowSet(new HashSet<T>(initialCapacity));
 	}
 	public static <T> FlowSet<T, ?> flowSet(T... elements) {
-		return ApiUtils.<T>flowSet(elements.length)
+		return ApiUtils.flowSet(new LinkedHashSet<T>(elements.length))
 				.addAll(Arrays.asList(elements));
 	}
 	public static <T, S extends Set<T>> FlowSet<T, S> flowSet(S set) {
