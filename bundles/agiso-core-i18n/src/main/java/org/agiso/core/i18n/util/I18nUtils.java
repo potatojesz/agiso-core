@@ -178,8 +178,22 @@ public abstract class I18nUtils {
 	public static String getMessage(Enum<?> e, Object... args) {
 		return getMessage(getCode(e), args);
 	}
+	public static String getMessage(String dscr, Enum<?> e, Object... args) {
+		String message = getMessage(getCode(dscr, e), args);
+		if(message == null) {
+			message = getMessage(getCode(e), args);
+		}
+		return message;
+	}
 	public static String getMessage(Locale locale, Enum<?> e, Object... args) {
 		return getMessage(locale, getCode(e), args);
+	}
+	public static String getMessage(Locale locale, String dscr, Enum<?> e, Object... args) {
+		String message = getMessage(locale, getCode(dscr, e), args);
+		if(message == null) {
+			message = getMessage(locale, getCode(dscr, e), args);
+		}
+		return message;
 	}
 
 	public static String getMessage(Class<?> c, Object... args) {
@@ -216,6 +230,7 @@ public abstract class I18nUtils {
 //	Wyznaczanie kodów I18n wyliczeń, klas, metod i pól
 //	--------------------------------------------------------------------------
 	private static final char CODE_SEPARATOR = '.';
+	private static final char DSCR_SEPARATOR = '#';
 
 	public static String getCode(Enum<?> e) {
 		try {
@@ -228,6 +243,9 @@ public abstract class I18nUtils {
 			ex.printStackTrace();
 		}
 		return e.getDeclaringClass().getName() + CODE_SEPARATOR + e.name();
+	}
+	public static String getCode(String dscr, Enum<?> e) {
+		return getCode(e) + DSCR_SEPARATOR + dscr;
 	}
 
 	public static String getCode(Class<?> c) {
