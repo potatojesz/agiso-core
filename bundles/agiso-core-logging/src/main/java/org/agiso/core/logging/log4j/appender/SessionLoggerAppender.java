@@ -142,7 +142,7 @@ public class SessionLoggerAppender extends BaseLoggerAppender {
 	 * @return
 	 */
 	public static synchronized boolean unregisterSessionLogger(Object sessionId, LoggerEventListener loggerEventListener) {
-		LogLog.debug("Unegistering listener " + loggerEventListener + " for session " + sessionId + " from appender [" + instance.name + "]");
+		LogLog.debug("Unregistering listener " + loggerEventListener + " for session " + sessionId + " from appender [" + instance.name + "]");
 
 		List<LoggerEventListener> loggers = SessionLoggerAppender.LOGGERS.get(sessionId);
 		return loggers == null? false : loggers.remove(loggerEventListener);
@@ -153,9 +153,9 @@ public class SessionLoggerAppender extends BaseLoggerAppender {
 	 * @return
 	 */
 	public static synchronized boolean unregisterSessionLoggers(Object sessionId) {
-		LogLog.debug("Unegistering all listeners for session " + sessionId + " from appender [" + instance.name + "]");
+		LogLog.debug("Unregistering all listeners for session " + sessionId + " from appender [" + instance.name + "]");
 
-		List<LoggerEventListener> loggers = SessionLoggerAppender.LOGGERS.get(sessionId);
+		List<LoggerEventListener> loggers = SessionLoggerAppender.LOGGERS.remove(sessionId);
 		if(loggers == null || loggers.isEmpty()) {
 			return false;
 		}
