@@ -9,7 +9,7 @@
 
 	<groupId>org.agiso.core</groupId>
 	<artifactId>agiso-core-pom</artifactId>
-	<version><!--org.agiso.core-->0.0.2.RC11</version>
+	<version><!--org.agiso.core-->0.0.2.RC12</version>
 	<packaging>pom</packaging>
 
 	<name>AGISO Core POM</name>
@@ -73,7 +73,9 @@
 	</distributionManagement>
 
 	<properties>
+		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.resourcesEncoding>UTF-8</project.build.resourcesEncoding>
 
 		<!-- Maven plugins -->
 		<maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
@@ -84,16 +86,28 @@
 		<maven-deploy-plugin.version>2.8.1</maven-deploy-plugin.version>
 
 		<!-- Logging libraries versions -->
-		<slf4j.version>1.7.10</slf4j.version>
+		<slf4j.version>1.7.25</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
 
 		<!-- Apache Commons libraries versions -->
 		<commons.lang.version>2.6</commons.lang.version>
 		<commons.beanutils.version>1.8.3</commons.beanutils.version>
 
+		<!-- Spring libraries versions -->
+		<spring.version>4.3.18.RELEASE</spring.version>
+
+		<!-- JAVAX Servlet libraries versions -->
+		<javax.servlet.version>3.1.0</javax.servlet.version>
+
+		<!-- Reflections library version -->
+		<reflections.version>0.9.11</reflections.version>
+
+		<!-- JCL library version -->
+		<jcl-core.version>2.8</jcl-core.version>
+
 		<!-- Testing libraries versions -->
 		<junit.version>4.12</junit.version>
-		<testng.version>6.8.21</testng.version>
+		<testng.version>6.14.3</testng.version>
 		<mockito.version>1.10.19</mockito.version>
 	</properties>
 
@@ -128,9 +142,9 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${maven-compiler-plugin.version}</version>
 					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
-						<encoding>utf-8</encoding>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<encoding>${project.build.sourceEncoding}</encoding>
 						<showDeprecation>false</showDeprecation>
 						<showWarnings>true</showWarnings>
 					</configuration>
@@ -140,7 +154,7 @@
 					<artifactId>maven-resources-plugin</artifactId>
 					<version>${maven-resources-plugin.version}</version>
 					<configuration>
-						<encoding>utf-8</encoding>
+						<encoding>${project.build.resourcesEncoding}</encoding>
 					</configuration>
 				</plugin>
 				<plugin>
