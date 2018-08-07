@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.agiso.core</groupId>
 		<artifactId>agiso-core-pom</artifactId>
-		<version><!--org.agiso.core-->0.0.2.RC12</version>
+		<version><!--org.agiso.core-->0.0.3.BUILD-SNAPSHOT</version>
 		<relativePath>../../pom/agiso-core-pom/pom.xml</relativePath>
 	</parent>
 
@@ -63,6 +63,15 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
+			<scope>compile</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- dla obsługi referencji do metod JDK1.8 w I18nUtils -->
+		<dependency>
+			<groupId>net.jodah</groupId>
+			<artifactId>typetools</artifactId>
+			<version>${typetools.version}</version>
 			<scope>compile</scope>
 			<optional>true</optional>
 		</dependency>

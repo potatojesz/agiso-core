@@ -9,7 +9,7 @@
 
 	<groupId>org.agiso.core</groupId>
 	<artifactId>agiso-core-pom</artifactId>
-	<version><!--org.agiso.core-->0.0.2.RC12</version>
+	<version><!--org.agiso.core-->0.0.3.BUILD-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>AGISO Core POM</name>
@@ -73,7 +73,7 @@
 	</distributionManagement>
 
 	<properties>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.resourcesEncoding>UTF-8</project.build.resourcesEncoding>
 
@@ -95,6 +95,9 @@
 
 		<!-- Spring libraries versions -->
 		<spring.version>4.3.18.RELEASE</spring.version>
+
+		<typetools.version>0.5.0</typetools.version>
+		<!-- typetools.version>0.5.1-SNAPSHOT</typetools.version -->
 
 		<!-- JAVAX Servlet libraries versions -->
 		<javax.servlet.version>3.1.0</javax.servlet.version>

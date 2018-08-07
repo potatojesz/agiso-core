@@ -21,13 +21,23 @@ package org.agiso.core.i18n.util;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Locale;
+import java.util.Map;
+import java.util.function.Function;
 
 import org.agiso.core.i18n.annotation.I18n;
 import org.agiso.core.i18n.provider.ILocaleProvider;
 import org.agiso.core.i18n.provider.IMessageProvider;
+import org.springframework.cglib.proxy.Enhancer;
+import org.springframework.cglib.proxy.MethodInterceptor;
+import org.springframework.cglib.proxy.MethodProxy;
+
+import com.google.common.collect.ImmutableMap;
+
+import net.jodah.typetools.TypeResolver;
 
 /**
  * Klasa narzędziowa dostarczająca funkcjonalności związanych z wielojęzykowością
@@ -315,7 +325,37 @@ public abstract class I18nUtils {
 		return i18nCode != null? i18nCode : c.getName() + CODE_SEPARATOR + field;
 	}
 
+	@SuppressWarnings("unchecked")
+	public static <T, R extends Serializable> String getCode(Function<T, R> f)
+			throws IntrospectionException {
+		final Class<?>[] arguments = TypeResolver.resolveRawArguments(Function.class, f.getClass());
+
+		return getCode((Class<T>)arguments[0], f);
+	}
+	public static <T, R extends Serializable> String getCode(Class<T> c, Function<T, R> f)
+			throws IntrospectionException {
+		Recorder<T> recorder = RecordingObject.create(c);
+		T object = recorder.getObject();
+
+		f.apply(object);
+
+		String name = recorder.getCurrentPropertyName();
+		name = uncapitalize(banishGetterSetters(name));
+
+		return getCode(c, name);
+	}
+
 //	--------------------------------------------------------------------------
+	private static String banishGetterSetters(String name) {
+		return name.replaceAll("^(get|set)", "");
+	}
+	public static String toSnakeCase(String s) {
+		return s.replaceAll("([a-z])([A-Z])","$1_$2").toLowerCase();
+	}
+	public static String uncapitalize(String s) {
+		return Character.toLowerCase(s.charAt(0)) + s.substring(1);
+	}
+
 	private static String findGetterFieldName(Method m) {
 		String name = m.getName();
 		if(name.length() > 3 && name.startsWith("get") && Character.isUpperCase(name.charAt(3))) {
@@ -350,7 +390,7 @@ public abstract class I18nUtils {
 						}
 					} else if(reflectionCheck) {
 						// Pole nie jest opisane adnotacją I18n. Jeśli do wyszukania mają być
-						// wykorzystane mechanizmy, to sprawdzamy interfejsy i nadklasę:
+						// wykorzystane mechanizmy refleksji, to sprawdzamy interfejsy i nadklasę:
 						for(Class<?> i : c.getInterfaces()) {
 							String i18nCode = findGetterFieldCode(i, field, false);
 							if(i18nCode != null) {
@@ -418,5 +458,76 @@ class SimpleMessageProvider implements IMessageProvider {
 			builder.append("]");
 			return builder.toString();
 		}
+	}
+}
+
+//--------------------------------------------------------------------------
+// Na podstawie kodu z projektu https://github.com/benjiman/benjiql
+// /src/main/java/uk/co/benjiweber/benjiql/mocking
+//--------------------------------------------------------------------------
+class Recorder<T> {
+	private T t;
+	private RecordingObject recorder;
+
+	public Recorder(T t, RecordingObject recorder) {
+		this.t = t;
+		this.recorder = recorder;
+	}
+
+	public String getCurrentPropertyName() {
+		return recorder.getCurrentPropertyName();
+	}
+
+	public T getObject() {
+		return t;
+	}
+}
+
+class RecordingObject implements MethodInterceptor {
+	private static final Map<Class<?>, Object> DEFAULT_VALUES =
+			ImmutableMap.<Class<?>,Object>builder()
+					.put(String.class, "string")
+					.put(Integer.class,0)
+					.put(Float.class, 0f)
+					.put(Double.class, 0d)
+					.put(Long.class, 0L)
+					.put(Character.class, 'c')
+					.put(Byte.class, (byte)0)
+					.put(int.class, 0)
+					.put(float.class,0f)
+					.put(double.class,0d)
+					.put(long.class, 0L)
+					.put(char.class, 'c')
+					.put(byte.class, (byte)0)
+			.build();
+
+	private String currentPropertyName = "";
+	private Recorder<?> currentMock = null;
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static <T> Recorder<T> create(Class<T> cls) {
+		Enhancer enhancer = new Enhancer();
+		enhancer.setSuperclass(cls);
+		final RecordingObject recordingObject = new RecordingObject();
+
+		enhancer.setCallback(recordingObject);
+		return new Recorder((T) enhancer.create(), recordingObject);
+	}
+
+	public Object intercept(Object o, Method method, Object[] os, MethodProxy mp) throws Throwable {
+		if(method.getName().equals("getCurrentPropertyName")) {
+			return getCurrentPropertyName();
+		}
+		currentPropertyName =  method.getName();
+		try {
+			currentMock = create(method.getReturnType());
+			return currentMock.getObject();
+		} catch (IllegalArgumentException e) {
+			return DEFAULT_VALUES.get((method.getReturnType()));
+		}
+	}
+
+	public String getCurrentPropertyName() {
+		return currentPropertyName;
 	}
 }
